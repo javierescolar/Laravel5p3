@@ -1,0 +1,1 @@
+<div id="footer"><p>Copyright (c) 2016</p></div>
