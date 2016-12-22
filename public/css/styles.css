@@ -214,7 +214,7 @@ Image credits: unsplash.com
   font-weight: bold;
 }
 
-#tableBrands,#tableProducts{
+#contentTableBrands,#contentTableProducts{
   display:none;
 }
 

@@ -86,3 +86,4 @@ Route::post('deleteProfile',[
 ]);
 
 Route::post('deleteUser/{id}','UserController@deleteUser');
+Route::post('actdesuser/{id}/active/{active}','UserController@actdesUser');

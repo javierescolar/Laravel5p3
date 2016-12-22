@@ -1,3 +1,7 @@
+<div id="contentTableUsers">
+    <br>
+    <input class="form-control" type="text" id="buscadorAdminUsers">
+    <br>
 <table id="tableUsers" class="table table-condensed table-responsive table-hover">
     <tr class=" text-center tableHeader">
         <td>Id</td>
@@ -6,7 +10,7 @@
         <td>Active</td>
         <td>Created</td>
         <td>Updated</td>
-        <td></td>
+        <td colspan="2">Options</td>
     </tr>
     @foreach($users as $user)
         <tr class="text-center">
@@ -17,6 +21,12 @@
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
             <td>
+                <form method="POST" action="{{URL::to('/')}}/actdesuser/{{$user->id}}/active/{{$user->active}}">
+                    {{Form::token()}}
+                    <input type="submit" value="Active On/Off" class="btn btn-warning">
+                </form>
+            </td>
+            <td>    
                 <form method="POST" action="{{URL::to('/')}}/deleteUser/{{$user->id}}">
                     {{Form::token()}}
                     <input type="submit" value="Delete" class="btn btn-danger">
@@ -25,3 +35,4 @@
         </tr>        
      @endforeach
 </table>
+</div>

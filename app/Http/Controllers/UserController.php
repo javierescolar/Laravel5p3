@@ -52,12 +52,14 @@ class UserController extends Controller
         return view('auth.delete');
     }
     
-    public function deleteUser($id){
+    public function deleteUser($id,$active){
         $user = User::where('id','=',$id)->delete();
         return redirect('/homeAdmin')->with('message','User remove successfully');
-        
-        
     }
-    
+    public function actdesUser($id,$active){
+        $active = ($active == 0)? 1 : 0;
+        $user = User::where('id','=',$id)->update(["active" => $active]);
+        return redirect('/homeAdmin')->with('message','User modified successfully');
+    }
     
 }

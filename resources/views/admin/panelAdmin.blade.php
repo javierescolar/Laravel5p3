@@ -1,21 +1,27 @@
 
-<div class="container">
+<div class="container-fluid">
+
     
+    <div class="col-md-2">
+        <ul>
+            <li>
+                <a id="botonUsers" class=" btn-link col-md-12">User</a>
+            </li>
+            <li>
+                <a id="botonBrands" class=" btn-link col-md-12">Brand</a>
+            </li>
+            <li>
+                <a id="botonProducts" class="btn-link col-md-12">Product</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10">
         <h5><strong><i class="glyphicon glyphicon-dashboard"></i> Admin Dashboard</strong></h5>
-        <div class="col-md-12">
-                
-                <a id="botonUsers" class="btn btn-primary col-md-3">User</a>
-                <a id="botonBrands" class="btn btn-primary col-md-3 col-md-offset-1">Brand</a>
-                <a id="botonProducts" class="btn btn-primary col-md-3 col-md-offset-1">Product</a>
-                
-        </div>
-        </br></br>
-        <div class="col-md-10 col-md-offset-1">
-            @include('admin.partials.tableUsers')
-            @include('admin.partials.tableBrands')
-            @include('admin.partials.tableProducts')
-            
-        </div>
-        <div class="col-md-12"></div>
-   
+        @include('admin.partials.tableUsers')
+        @include('admin.partials.tableBrands')
+        @include('admin.partials.tableProducts')
+
+    </div>
+    <div class="col-md-12"></div>
+
 </div>

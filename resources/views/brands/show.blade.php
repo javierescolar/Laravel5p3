@@ -13,7 +13,7 @@
                     {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.products.destroy', $brand->slug, $product->slug))) }}
                         <a href="{{ route('brands.products.show', [$brand->slug, $product->slug]) }}">{{ $product->name }}</a>
                         (
-                            {{ link_to_route('brands.products.edit', 'Edit', array($brand->slug, $product->slug), array('class' => 'btn btn-info')) }},
+                            {{ link_to_route('brands.products.edit', 'Edit', array($brand->slug, $product->slug), array('class' => 'btn btn-warning')) }},
  
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         )
