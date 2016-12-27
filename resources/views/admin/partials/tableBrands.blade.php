@@ -1,6 +1,6 @@
 <div id="contentTableBrands">
     <br>
-    <input class="form-control" type="text" id="buscadorAdminBrands">
+    <input class="form-control" type="text" id="buscadorAdminBrands" placeholder="Name search">
     <br>
     <table id="tableBrands" class="table table-condensed table-responsive table-hover">
         <thead>
@@ -10,7 +10,6 @@
                 <td>Created</td>
                 <td>Updated</td>
                 <td>Options</td>
-
             </tr>
         </thead>
         <tbody>
@@ -30,9 +29,7 @@
                 </td>
             </tr>        
             @endforeach
-            <tr>
-                <td colspan="5"> {{ link_to_route('brands.create', 'Add Brand') }}</td>
-            </tr>
         </tbody>
     </table>
+    {{ link_to_route('brands.create', 'Add Brand') }}
 </div>

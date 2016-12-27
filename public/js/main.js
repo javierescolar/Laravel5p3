@@ -2,19 +2,23 @@
 $(document).ready(function () {
     //peticiones buscador
 
-    document.getElementById('buscadorAdminBrands').addEventListener('keyup', function () {
-        var txt = this.value;
-        var table = document.getElementById('tableBrands');
-        Array.prototype.forEach.call(table.children[1].children, function (e) {
-            console.log(e.children[1].children.nodeValue);
-                if (e.style.display == 'none') {
-                    e.style.display = 'table-row';
-                } else {
-                    e.style.display = 'none';
-                }
-            
-        })
-    });
+    if (document.getElementById('buscadorAdminBrands') || 
+            document.getElementById('buscadorAdminProducts') || 
+            document.getElementById('buscadorAdminUsers')){
+        document.getElementById('buscadorAdminBrands').addEventListener('keyup', function () {
+            var txt = this.value.toLowerCase();
+            searchAdminPanel('tableBrands', 1, txt);
+        });
+        document.getElementById('buscadorAdminProducts').addEventListener('keyup', function () {
+            var txt = this.value.toLowerCase();
+            searchAdminPanel('tableProducts', 2, txt);
+        });
+        document.getElementById('buscadorAdminUsers').addEventListener('keyup', function () {
+            var txt = this.value.toLowerCase();
+            searchAdminPanel('tableUsers', 1, txt);
+        });
+    }
+
 
     $('#search').keyup(function () {
         var txt = $(this).val();
@@ -51,6 +55,16 @@ $(document).ready(function () {
     });
 
 });
+
+function searchAdminPanel(nameTable, posSearch, txt) {
+    var table = document.getElementById(nameTable);
+    var tr = table.children[1].children;//referencia al tbody
+    Array.prototype.forEach.call(tr, function (td) {
+        var nameSearch = td.children[posSearch].innerText.toLowerCase();
+        td.style.display = (nameSearch.indexOf(txt) > -1) ? 'table-row' : 'none';
+    });
+}
+
 
 function seachAJAX(search) {
     var urlProject = window.location.host;
