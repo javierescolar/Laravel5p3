@@ -26,10 +26,10 @@
         <hgroup>
             <style>
                 .fade-carousel .slides .slide-{{$key+1}} {
-                  background-image: url({{URL::to('/')}}/img/{{$carrusel->image_carrusel}}); 
+                  background-image: url({{URL::to('/')}}/img/{{$carrusel->location}}); 
                 }
             </style>
-            <h1>{{$carrusel->name}}</h1>        
+            <h1>{{$carrusel->product->name}}</h1>        
             <h3>Get start your next awesome project</h3>
         </hgroup>
         <a href="{{URL::to('/')}}" class="btn btn-hero btn-lg" role="button">See all features</a>

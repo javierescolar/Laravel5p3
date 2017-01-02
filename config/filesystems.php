@@ -58,10 +58,6 @@ return [
             'root' => public_path('img/products'),
         ],
         
-        'carrusel' => [
-            'driver' => 'local',
-            'root' => public_path('img/products/carrusel'),
-        ],
         
         'users' => [
             'driver' => 'local',

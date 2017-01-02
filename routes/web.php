@@ -19,10 +19,15 @@ Route::get('homeAdmin', 'AdminController@index');
 Route::get('search', 'HomeController@search');
 
 // Provide controller methods with object instead of ID
+Route::model('images', 'Image');
 Route::model('products', 'Product');
 Route::model('brands', 'Brand');
 
+
 //Forma de enmascarar las Url por el slug y no por el Id
+Route::bind('image', function($value, $route) {
+	return App\Image::whereSlug($value)->first();
+});
 Route::bind('product', function($value, $route) {
 	return App\Product::whereSlug($value)->first();
 });
@@ -33,6 +38,7 @@ Route::bind('brand', function($value, $route) {
 //creacion de rutas resources más adaptadas al proyecto y sus dependencias
 Route::resource('brands', 'BrandsController');
 Route::resource('brands.products', 'ProductsController');
+Route::resource('brands.products.images', 'ImagesController');
 
 //get clase auth
 Route::get('login',[

@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="cold-md-12 productHead">
-    <h3 class="col-md-offset-1">{{ $product->name }}<small class="col-md-offset-8">Technical specifications</small></h3>
+    <h3 class="col-md-offset-1">
+        {{ $product->name }}
+        <small class="col-md-offset-6">Technical specifications</small>
+        <small class="col-md-offset-1"><a href="{{ route('brands.products.images.store', [$brand->slug, $product->slug]) }}">Gallery</a></small>
+    </h3>
 </div>
 <div class="productBody">
     
@@ -16,7 +20,12 @@
     
     <img src="{{URL::to('/')}}/img/{{$product->image}}">
     
-    {{ $product->description }}
+    <p>
+         {{ $product->description }}
+    </p>
+   
+    
+   {{ link_to_route('brands.products.images.create', 'Add Images', array($product->brand->slug, $product->slug), array('class' => 'btn btn-link')) }}
 </div>
 
 @endsection

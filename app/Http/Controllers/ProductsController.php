@@ -39,28 +39,9 @@ class ProductsController extends Controller {
      */
     public function store(Brand $brand, Request $request) {
         $this->validate($request, $this->rules);
-
-        $imagepath = "products/";
-        $imagepathCarrusel = "products/carrusel/";
-        
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('image');
-        $fileCarrusel = $request->file('image_carrusel');
-        
         $input = Input::all();
-        $input['brand_id'] = $brand->id;
-        $input['image'] = $imagepath . $file->getClientOriginalName();
-        $input['image_carrusel'] = $imagepathCarrusel . $fileCarrusel->getClientOriginalName();
-        $input['offer'] = (isset($input['offer']))? 1 : 0;
-        $input['carrusel'] = (isset($input['carrusel']))? 1 : 0;
-        
+        $input['brand_id'] = $brand->id;   
         Product::create($input);
-
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('products')->put($file->getClientOriginalName(), \File::get($file));
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('carrusel')->put($fileCarrusel->getClientOriginalName(), \File::get($file));
-
         return Redirect::route('brands.show', $brand->slug)->with('message', 'Product created.');
     }
 

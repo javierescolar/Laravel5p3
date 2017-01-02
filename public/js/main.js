@@ -78,11 +78,8 @@ function seachAJAX(search) {
             console.log(result);
             result.forEach(function (e) {
                 var div = document.createElement('div'),
-                        img = document.createElement('img'),
-                        p = document.createElement('p');
-                img.setAttribute('src', window.location.protocol + '//' + urlProject + '/img/' + e.image);
+                    p = document.createElement('p');
                 p.textContent = e.name;
-                div.appendChild(img);
                 div.appendChild(p);
                 $('#resultSearch').append(div);
             });

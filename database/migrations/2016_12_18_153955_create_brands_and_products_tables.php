@@ -30,12 +30,9 @@ class CreateBrandsAndProductsTables extends Migration
 			$table->string('slug')->default('');
 			$table->text('description');
 			$table->float('price');
-			$table->string('image');
-			$table->string('image_carrusel');
-			$table->boolean('offer')->default(false);
-			$table->boolean('carrusel')->default(false);
 			$table->timestamps();
 		});
+                
     }
 
     /**
@@ -45,6 +42,7 @@ class CreateBrandsAndProductsTables extends Migration
      */
     public function down()
     {
+        
         Schema::dropIfExists('products');
         Schema::dropIfExists('brands');
     }
