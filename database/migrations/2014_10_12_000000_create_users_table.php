@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->default('users/user_default.png');
             $table->string('aboutme',8000);
             $table->enum('role',['user','admin'])->default('user');
+            $table->integer('discount_user')->default(2);
             $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->string('confirm_token')->default('');

@@ -37,27 +37,25 @@ class ImagesController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        $inputs = $request->all();
+    public function store(Brand $brand, Product $product, Request $request) {
+        $inputs = Input::all();
         $imagepath = "products/";
+        $lastImg = Image::all()->where('product_id', '=', $product->id)->last();
+        (int)$count = str_replace('-','',substr($lastImg->slug,-2));
         foreach ($inputs['image'] as $key => $image) {
-            $objImg['product_id'] = 1;
-            $objImg['location'] = $imagepath . $image->getClientOriginalName();
-            $objImg['slug'] = "image-" . ($key + 1);
-            $objImg['offer'] = isset($inputs['offer'][$key]) ? 1 : 0;
-            $objImg['carrusel'] = isset($inputs['carrusel'][$key]) ? 1 : 0;
-            $objImg['gallery'] = isset($inputs['gallery'][$key]) ? 1 : 0;
-            Image::create($objImg);
+            $count++;
+            $objImg = new Image();
+            $objImg->product_id = $product->id;
+            $objImg->location = $imagepath . $image->getClientOriginalName();
+            $objImg->slug = "image-" . $count;
+            $objImg->offer = isset($inputs['offer'][$key]) ? 1 : 0;
+            $objImg->carrusel = isset($inputs['carrusel'][$key]) ? 1 : 0;
+            $objImg->gallery = isset($inputs['gallery'][$key]) ? 1 : 0;
+            $objImg->save();
             Storage::disk('products')->put($image->getClientOriginalName(), \File::get($image));
         }
-        //obtenemos el campo file definido en el formulario
-        /*$file = $request->file('image');
-        $input['image'] = $imagepath . $file->getClientOriginalName();
-        $input['image_carrusel'] = $imagepathCarrusel . $fileCarrusel->getClientOriginalName();
-        $input['offer'] = (isset($input['offer'])) ? 1 : 0;
-        $input['carrusel'] = (isset($input['carrusel'])) ? 1 : 0;
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('products')->put($file->getClientOriginalName(), \File::get($file));*/
+        $images = $product->images()->get();
+        return view('images.index', compact('product', 'images'))->with('message', 'Image deleted.');
     }
 
     /**
@@ -71,26 +69,9 @@ class ImagesController extends Controller {
 //        return view('images.show', compact('product','images')); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //
-    }
+    
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.

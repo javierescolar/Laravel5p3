@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Brand;
 use Illuminate\Support\Facades\Input;
 use Redirect;
@@ -63,7 +62,8 @@ class BrandsController extends Controller {
      * @return Response
      */
     public function show(Brand $brand) {
-        return view('brands.show', compact('brand'));
+        $products = $brand->products()->paginate(8);
+        return view('brands.show', compact('brand','products'));
     }
 
     /**

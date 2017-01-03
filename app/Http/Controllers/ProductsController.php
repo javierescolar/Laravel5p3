@@ -53,7 +53,8 @@ class ProductsController extends Controller {
      * @return Response
      */
     public function show(Brand $brand, Product $product) {
-        return view('products.show', compact('brand', 'product'));
+        $imagesCarruselGallery = $product->images()->where("gallery",1)->get();  
+        return view('products.show', compact('brand', 'product','imagesCarruselGallery'));
     }
 
     /**

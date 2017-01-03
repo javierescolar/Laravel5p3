@@ -34,13 +34,7 @@
             @yield('content')
             <div class="push"></div>
         </div>
-        @if (!Auth::guest())
-        @if(!Auth::user()->role == "admin")
-        @include('partials.footer')
-        @endif
-        @else
-        @include('partials.footer')
-        @endif
+        
 
         <script type="text/javascript" src="{{ URL::to('/') }}/js/jquery-1.12.1.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/bootstrap.min.js"></script>

@@ -10,22 +10,42 @@
     </h3>
 </div>
 <div class="productBody">
-    
+
     @if(!Auth::guest() && Auth::user()->role == "admin")
     {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.products.destroy', $product->brand->slug, $product->slug))) }}
     {{ link_to_route('brands.products.edit', 'Edit', array($product->brand->slug, $product->slug), array('class' => 'btn btn-warning')) }}
     {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
     {{ Form::close() }}
+     {{ link_to_route('brands.products.images.create', 'Add Images', array($product->brand->slug, $product->slug), array('class' => 'btn btn-link')) }}
     @endif
     
-    <img src="{{URL::to('/')}}/img/{{$product->image}}">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="text-center">{{$product->slogan}}</h1>
+        <p class="text-center textDescription">
+            {{ $product->description }}
+        </p>
+    </div>
+    <div class="col-md-12">
+        @include('products/partials/carrusel')
+    </div>
+    <div class="col-md-10 col-md-offset-1 characteristic">
+        <div class="col-md-2 boxCharacteristic col-md-offset-3">
+            <h3 class="text-center">{{$product->characteristic_1}}</h3>
+        </div>
+        
+        <div class="col-md-2 boxCharacteristic">
+            <h3 class="text-center">{{$product->characteristic_2}}</h3>
+        </div>
+       
+        <div class="col-md-2 boxCharacteristic">
+            <h3 class="text-center">{{$product->characteristic_3}}</h3>
+        </div>
+    </div>
     
-    <p>
-         {{ $product->description }}
-    </p>
+
+
+
    
-    
-   {{ link_to_route('brands.products.images.create', 'Add Images', array($product->brand->slug, $product->slug), array('class' => 'btn btn-link')) }}
 </div>
 
 @endsection

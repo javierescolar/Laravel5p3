@@ -236,8 +236,45 @@ Image credits: unsplash.com
   border-bottom:solid 0.01em #777;
   width:98%;
   margin:auto;
+  margin-bottom: 1.5em;
+}
+.textDescription{
+  font-size:1.5em;
+}
+.boxCharacteristic{
+  height: 8em;
+  border: solid grey 0.1em;
+  background-color: rgb(253, 253, 253);
+  color:#83a4de;
+  margin-right: 0.5em;
+}
+.characteristic{
+    margin-top: 2em;
+}
+
+#myCarousel{
+  margin-top: 0 !important;
+}
+
+#myCarousel img{
+  height: 35em;
+  width: 100%;
 }
 /*Estilos IMAGES*/
 .btnRemoveImage{
-  margin-left:-3.5em;
+  position: absolute;
+  top:0.2em;
+  right: 1.5em;
+}
+
+.logoBrands{
+  height:1.5em;
+  margin-top:-0.4em;
+  margin-right:0.5em;
+}
+.linksPagination{
+  margin-top:-1.5em;
+}
+.linksPagination .pagination{
+  float:right;
 }

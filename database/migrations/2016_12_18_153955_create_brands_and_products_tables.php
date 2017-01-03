@@ -28,8 +28,13 @@ class CreateBrandsAndProductsTables extends Migration
 			$table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 			$table->string('name')->default('');
 			$table->string('slug')->default('');
+                        $table->string('slogan')->default('');
 			$table->text('description');
+                        $table->string('characteristic_1')->default('');
+                        $table->string('characteristic_2')->default('');
+                        $table->string('characteristic_3')->default('');
 			$table->float('price');
+                        $table->integer('discount')->default(0);
 			$table->timestamps();
 		});
                 

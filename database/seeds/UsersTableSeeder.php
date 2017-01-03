@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@admin.es',
             'password' => bcrypt('admin'),
             'role' => 'admin',
+            'discount_user' => 0,
             'image' => 'users/user_admin.png',
             'active' => true,
             'aboutme' => 'Administrador'
