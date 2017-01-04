@@ -32,7 +32,7 @@
                 <td>    
                     <form method="POST" action="{{URL::to('/')}}/deleteUser/{{$user->id}}">
                         {{Form::token()}}
-                        <input type="submit" value="Delete" class="btn btn-danger">
+                        <button data-toggle ="tooltip" title="Delete Brand" class="btn btn-danger glyphicon glyphicon-trash" type="submit"></button>
                     </form>
                 </td>
             </tr>        

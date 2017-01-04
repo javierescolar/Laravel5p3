@@ -61,8 +61,33 @@ class BrandsController extends Controller {
      * @param  \App\Project $project
      * @return Response
      */
-    public function show(Brand $brand) {
-        $products = $brand->products()->paginate(8);
+    public function show(Brand $brand, Request $request) {
+        if(isset($request->order)){
+            $order = $request->order;
+            $request->session()->set('order', $order);
+        } else if($request->session()->exists('order')){
+            $order = $request->session()->get('order');
+        } else {
+            $order = "";
+        }
+        
+        switch ($order){
+            case 'ascPrice':
+                $products = $brand->products()->orderBy('price','asc')->paginate(8);
+                break;
+            case 'descPrice':
+                $products = $brand->products()->orderBy('price','desc')->paginate(8);
+                break;
+            case 'ascAlpha':
+                $products = $brand->products()->orderBy('name','asc')->paginate(8);
+                break;
+            case 'descAlpha':
+                  $products = $brand->products()->orderBy('name','desc')->paginate(8);
+                break;
+            default :
+               $products = $brand->products()->paginate(8); 
+        }
+        
         return view('brands.show', compact('brand','products'));
     }
 

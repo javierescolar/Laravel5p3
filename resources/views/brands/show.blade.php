@@ -12,11 +12,14 @@ Your brand has no products.
 <div class="paginate col-md-12">
 
     <div class="form col-md-4">
-        <form class="form">
+        <form class="form" method="GET" action="{{route('brands.show',$brand->slug)}}" id="formOrderBrands">
             <div class="form-group">
-                <select class="form-control">
-                    <option>Order By Price Asc</option>
-                    <option>Order By Price Desc</option>
+                <select class="form-control" name="order" id="selectOrderBrands">
+                    <option value="nothing"></option>
+                    <option value="ascPrice">Sort by ascending price</option>
+                    <option value="descPrice">Sort by descending price</option>
+                    <option value="ascAlpha">order alphabetically A-Z</option>
+                    <option value="descAlpha">order alphabetically Z-A</option>
                 </select>
             </div>
         </form>

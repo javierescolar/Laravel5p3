@@ -1,7 +1,11 @@
 
 $(document).ready(function () {
     //peticiones buscador
-
+    if(document.getElementById('selectOrderBrands')){
+        document.getElementById('selectOrderBrands').addEventListener('change', function () {
+            document.getElementById('formOrderBrands').submit();
+        });
+    }
     if (document.getElementById('buscadorAdminBrands') || 
             document.getElementById('buscadorAdminProducts') || 
             document.getElementById('buscadorAdminUsers')){

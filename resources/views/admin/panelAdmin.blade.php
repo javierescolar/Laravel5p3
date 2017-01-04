@@ -30,6 +30,27 @@
                     </li>
                 </ul>
             </div>
+            <br>
+            <br>
+            <div class="side-menu-container">
+                <table class="table table-responsive table-condensed">
+                    <thead>
+                    <th>Connect</th>
+                    <th>Disonnect</th>
+                    </thead>
+                    <tbody>
+                        @foreach($access as $acc)
+                        <tr>
+                            <td class="small">{{$acc->connect}}</td>
+                            <td class="small">{{$acc->disconnect}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+
+                </ul>
+            </div>
         </nav>
 
 

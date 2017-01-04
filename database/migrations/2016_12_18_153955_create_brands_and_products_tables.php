@@ -35,6 +35,7 @@ class CreateBrandsAndProductsTables extends Migration
                         $table->string('characteristic_3')->default('');
 			$table->float('price');
                         $table->integer('discount')->default(0);
+                        $table->integer('stock')->default(0);
 			$table->timestamps();
 		});
                 

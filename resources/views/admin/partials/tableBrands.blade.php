@@ -22,9 +22,9 @@
                 <td>
 
                     {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.destroy', $brand->slug))) }}
-                    {{ link_to_route('brands.show', 'Show', array($brand->slug), array('class' => 'btn buttons'))}}
-                    {{ link_to_route('brands.edit', 'Edit', array($brand->slug), array('class' => 'btn btn-warning'))}}
-                    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                    {{ link_to_route('brands.show', '', array($brand->slug), array('class' => 'btn buttons glyphicon glyphicon-eye-open','data-toggle' => "tooltip",'title'=>"Show Brand"))}}
+                    {{ link_to_route('brands.edit', '', array($brand->slug), array('class' => 'btn btn-warning glyphicon glyphicon-edit','data-toggle' => "tooltip",'title'=>"Edit Brand"))}}
+                    <button data-toggle ="tooltip" title="Delete Brand" class="btn btn-danger glyphicon glyphicon-trash" type="submit"></button>
                     {{ Form::close() }}
                 </td>
             </tr>        
