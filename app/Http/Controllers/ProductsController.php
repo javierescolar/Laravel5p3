@@ -14,7 +14,14 @@ class ProductsController extends Controller {
     protected $rules = [
         'name' => ['required', 'min:3'],
         'slug' => ['required'],
+        'slogan' => ['required'],
         'description' => ['required'],
+        'characteristic_1' => ['required'],
+        'characteristic_2' => ['required'],
+        'characteristic_3' => ['required'],
+        'price' => ['required'],
+        'stock' => ['required'],
+        
     ];
 
     public function index(Brand $brand) {

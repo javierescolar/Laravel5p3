@@ -41,8 +41,14 @@
                     <tbody>
                         @foreach($access as $acc)
                         <tr>
+                            @if($acc->connect == $acc->disconnect)
+                            <td class="small">{{$acc->connect}}</td>
+                            <td class="small">Open session <span class="iconGreen glyphicon glyphicon-globe"></span></td>
+                            @else
                             <td class="small">{{$acc->connect}}</td>
                             <td class="small">{{$acc->disconnect}}</td>
+                            @endif
+
                         </tr>
                         @endforeach
                     </tbody>

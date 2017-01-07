@@ -278,3 +278,14 @@ Image credits: unsplash.com
 .linksPagination .pagination{
   float:right;
 }
+
+.iconGreen{
+  color: green;
+  top:-0.6em !important;
+  left:0.5em !important;
+}
+
+.offerDescription{
+  overflow: hidden;
+  height: 6em;
+}

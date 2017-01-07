@@ -4,13 +4,16 @@
         <div class="col-md-6">
             <img class="img img-responsive" src="{{URL::to('/')}}/img/{{$offer->location}}"></img>
             @if ($offer->product->discount > 0)
+            <p>
             Descuento del {{$offer->product->discount}}%
+            </p>
             @endif
-            <a href="{{URL::to('/')}}/brands/{{$offer->product->brand->slug}}/products/{{$offer->product->slug}}" class="btn buttons col-md-12">Show more</a>
+            
         </div>
         <div class="col-md-6">
             <h3>{{$offer->product->name}}</h3>
-            <p>{{$offer->product->description}}</p>
+            <p class="offerDescription">{{$offer->product->description}}</p>
+            <a class="btn buttons col-md-12" href="{{ route('brands.products.show', [$offer->product->brand->slug, $offer->product->slug]) }}">Show more</a>
         </div>
     </div>   
     @endforeach

@@ -33,7 +33,10 @@
     {{ Form::label('price', 'Price:') }}
     {{ Form::number('price',null,['class'=>'form-control','step'=>'any']) }}
 </div>
-
+<div class="form-group">
+    {{ Form::label('stock', 'Stock:') }}
+    {{ Form::number('stock',null,['class'=>'form-control']) }}
+</div>
 <div class="form-group">
     {{ Form::submit($submit_text,['class'=>'btn botones']) }}
 </div>

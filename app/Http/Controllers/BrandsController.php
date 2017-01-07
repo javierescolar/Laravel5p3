@@ -13,6 +13,7 @@ class BrandsController extends Controller {
     protected $rules = [
         'name' => ['required', 'min:3'],
         'slug' => ['required'],
+        'logo' => ['required','max:200'],
     ];
 
     public function index() {
@@ -42,17 +43,19 @@ class BrandsController extends Controller {
 
         //obtenemos el campo file definido en el formulario
         $file = $request->file('logo');
+        if ($file->getClientSize() <= 200000) {
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
 
-        //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+            $input['logo'] = $imagepath . $nombre;
 
-        $input['logo'] = $imagepath . $nombre;
+            Brand::create($input);
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            Storage::disk('brands')->put($nombre, \File::get($file));
 
-        Brand::create($input);
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        Storage::disk('brands')->put($nombre, \File::get($file));
-
-        return Redirect::route('brands.index')->with('message', 'Brand created');
+            return Redirect::route('brands.index')->with('message', 'Brand created');
+        }
+        return "tamaño de la imagen excesivo";
     }
 
     /**
@@ -62,33 +65,33 @@ class BrandsController extends Controller {
      * @return Response
      */
     public function show(Brand $brand, Request $request) {
-        if(isset($request->order)){
+        if (isset($request->order)) {
             $order = $request->order;
             $request->session()->set('order', $order);
-        } else if($request->session()->exists('order')){
+        } else if ($request->session()->exists('order')) {
             $order = $request->session()->get('order');
         } else {
             $order = "";
         }
-        
-        switch ($order){
+
+        switch ($order) {
             case 'ascPrice':
-                $products = $brand->products()->orderBy('price','asc')->paginate(8);
+                $products = $brand->products()->orderBy('price', 'asc')->paginate(8);
                 break;
             case 'descPrice':
-                $products = $brand->products()->orderBy('price','desc')->paginate(8);
+                $products = $brand->products()->orderBy('price', 'desc')->paginate(8);
                 break;
             case 'ascAlpha':
-                $products = $brand->products()->orderBy('name','asc')->paginate(8);
+                $products = $brand->products()->orderBy('name', 'asc')->paginate(8);
                 break;
             case 'descAlpha':
-                  $products = $brand->products()->orderBy('name','desc')->paginate(8);
+                $products = $brand->products()->orderBy('name', 'desc')->paginate(8);
                 break;
             default :
-               $products = $brand->products()->paginate(8); 
+                $products = $brand->products()->paginate(8);
         }
-        
-        return view('brands.show', compact('brand','products'));
+
+        return view('brands.show', compact('brand', 'products'));
     }
 
     /**
