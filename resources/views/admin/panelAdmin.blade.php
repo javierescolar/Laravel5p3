@@ -28,6 +28,9 @@
                     <li>
                         <a id="botonProducts">Product <span class="glyphicon glyphicon-menu-right"></span></a>
                     </li>
+                    <li>
+                        <a id="botonUploadXML">Upload XML <span class="glyphicon glyphicon-menu-right"></span></a>
+                    </li>
                 </ul>
             </div>
             <br>
@@ -88,6 +91,7 @@
         @include('admin.partials.tableUsers')
         @include('admin.partials.tableBrands')
         @include('admin.partials.tableProducts')
+        @include('admin.partials.formUploadXML')
     </div>
     <div class="col-md-12"></div>
 </div>

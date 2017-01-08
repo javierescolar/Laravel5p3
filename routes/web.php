@@ -91,5 +91,6 @@ Route::post('deleteProfile',[
     'as' => 'delete'
 ]);
 
-Route::post('deleteUser/{id}','UserController@deleteUser');
-Route::post('actdesuser/{id}/active/{active}','UserController@actdesUser');
+Route::post('deleteUser/{id}','AdminController@deleteUser');
+Route::post('actdesuser/{id}/active/{active}','AdminController@actdesUser');
+Route::post('uploadXML','AdminController@uploadXML');

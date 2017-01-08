@@ -214,7 +214,7 @@ Image credits: unsplash.com
   font-weight: bold;
 }
 
-#contentTableBrands,#contentTableProducts{
+#contentTableBrands,#contentTableProducts,#contentFormUploadXML{
   display:none;
 }
 
@@ -288,4 +288,27 @@ Image credits: unsplash.com
 .offerDescription{
   overflow: hidden;
   height: 6em;
+}
+
+.brandFormProduct{
+  height:2em;
+}
+
+.headerCreateProduct{
+  padding: 0.2em;
+  background: rgba(245,245,245,1);
+  background: -moz-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(232,232,232,1) 67%, rgba(214,214,214,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,245,245,1)), color-stop(67%, rgba(232,232,232,1)), color-stop(100%, rgba(214,214,214,1)));
+  background: -webkit-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(232,232,232,1) 67%, rgba(214,214,214,1) 100%);
+  background: -o-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(232,232,232,1) 67%, rgba(214,214,214,1) 100%);
+  background: -ms-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(232,232,232,1) 67%, rgba(214,214,214,1) 100%);
+  background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(232,232,232,1) 67%, rgba(214,214,214,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#d6d6d6', GradientType=0 );
+}
+
+.positionBrand{
+  margin:0;
+}
+#botonProducts,#botonBrands,#botonUsers,#botonUploadXML{
+  cursor: pointer;
 }

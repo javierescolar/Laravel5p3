@@ -18,13 +18,15 @@ class ImagesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     protected function rulesImages($images) {
-        $correctSize = true;
+        $correctImages = true;
         foreach ($images as $image) {
-            if ($image->getClientSize() > 200000) {
-                $correctSize = false;
+            $x = $image->getClientMimeType();
+            if ($image->getClientSize() > 200000 ||
+                ($image->getClientMimeType() != "image/jpeg" && $image->getClientMimeType() != "image/gif")) {
+                $correctImages = false;
             }
         }
-        return $correctSize;
+        return $correctImages;
     }
 
     public function index(Brand $brand, Product $product) {
@@ -67,7 +69,7 @@ class ImagesController extends Controller {
             }
             $message = 'Image created.';
         } else {
-            $message = 'the iamge seize must be 200 Km max';
+            $message = 'the image size must be 200 Km max anf format accept is gif and jpeg';
         }
         $images = $product->images()->get();
         return $view = view('images.index', compact('product', 'images'))->with('message', $message);

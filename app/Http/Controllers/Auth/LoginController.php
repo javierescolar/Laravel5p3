@@ -8,28 +8,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\AdminAccess;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Login Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles authenticating users for the application and
+      | redirecting them to your home screen. The controller uses a trait
+      | to conveniently provide its functionality to your applications.
+      |
+     */
 
-    use AuthenticatesUsers;
+use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    
-    
     protected $redirectTo = '/home';
 
     /**
@@ -37,13 +34,19 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', ['except' => 'logout']);
     }
-    protected function authenticated(Request $request, $user)
-    {
-        if($user->role == "admin"){
+
+    protected function authenticated(Request $request, $user) {
+        if ($user->role == "admin") {
+            //updateo una posible sesion sin cerrar
+            AdminAccess::where('user_id', Auth::id())
+                    ->orderBy('id', 'desc')
+                    ->limit(1)
+                    ->update(['disconnect' => date('Y-m-d H:i:s')]);
+
+            //creo un nuevo registro
             $access = new AdminAccess();
             $access->user_id = $user->id;
             $access->connect = date('Y-m-d H:i:s');
@@ -53,14 +56,13 @@ class LoginController extends Controller
         }
         return redirect()->intended('home');
     }
-    
-    public function logout(Request $request)
-    {
+
+    public function logout(Request $request) {
         AdminAccess::where('user_id', Auth::id())
-          ->orderBy('id', 'desc')
-          ->limit(1)
-          ->update(['disconnect' => date('Y-m-d H:i:s')]);
-        
+                ->orderBy('id', 'desc')
+                ->limit(1)
+                ->update(['disconnect' => date('Y-m-d H:i:s')]);
+
         $this->guard()->logout();
 
         $request->session()->flush();
@@ -69,9 +71,9 @@ class LoginController extends Controller
 
         return redirect('/');
     }
-    public function username()
-    {
+
+    public function username() {
         return 'username';
     }
-   
+
 }

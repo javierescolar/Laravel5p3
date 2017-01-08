@@ -31,5 +31,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ link_to_route('brands.create', 'Add Brand') }}
+    {{ link_to_route('brands.create', 'New Brand') }}
 </div>
