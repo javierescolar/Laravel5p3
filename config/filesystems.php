@@ -63,6 +63,11 @@ return [
             'driver' => 'local',
             'root' => public_path('img/users'),
         ],
+        
+        'xml' => [
+            'driver' => 'local',
+            'root' => public_path('xml'),
+        ],
 
         'public' => [
             'driver' => 'local',

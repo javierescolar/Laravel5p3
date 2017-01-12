@@ -9,14 +9,10 @@ use App\Brand;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Storage;
+use Auth;
 
-class ImagesController extends Controller {
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class ImagesAdminController extends Controller
+{
     protected function rulesImages($images) {
         $correctImages = true;
         foreach ($images as $image) {
@@ -31,7 +27,8 @@ class ImagesController extends Controller {
 
     public function index(Brand $brand, Product $product) {
         $images = $product->images()->get();
-        return view('images.index', compact('product', 'images'));
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.images.index', compact('product', 'images','access'));
     }
 
     /**
@@ -40,7 +37,8 @@ class ImagesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(Brand $brand, Product $product) {
-        return view('images.create', compact('product'));
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.images.create', compact('product','access'));
     }
 
     /**
@@ -67,12 +65,11 @@ class ImagesController extends Controller {
                 $objImg->save();
                 Storage::disk('products')->put($image->getClientOriginalName(), \File::get($image));
             }
-            $message = 'Image created.';
+            $message = 'Images created.';
         } else {
             $message = 'the image size must be 200 Km max anf format accept is gif and jpeg';
         }
-        $images = $product->images()->get();
-        return $view = view('images.index', compact('product', 'images'))->with('message', $message);
+        return redirect()->route('adminbrands.adminproducts.adminimages.index', [$brand->slug,$product->slug])->with('message', $message);
         
     }
 
@@ -82,9 +79,32 @@ class ImagesController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand, Product $product) {
-//        $images = $product->images()->get();
-//        return view('images.show', compact('product','images')); 
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
     }
 
     /**
@@ -95,8 +115,8 @@ class ImagesController extends Controller {
      */
     public function destroy(Brand $brand, Product $product, Image $image) {
         $image->delete();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
         $images = $product->images()->get();
-        return view('images.index', compact('product', 'images'))->with('message', 'Image deleted.');
+        return redirect()->route('adminbrands.adminproducts.adminimages.index', [$brand->slug,$product->slug])->with('message', 'Image deleted.');
     }
-
 }

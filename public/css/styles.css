@@ -214,9 +214,7 @@ Image credits: unsplash.com
   font-weight: bold;
 }
 
-#contentTableBrands,#contentTableProducts,#contentFormUploadXML{
-  display:none;
-}
+
 
 .tableHeader, .tableHeader:hover{
   text-align:center;

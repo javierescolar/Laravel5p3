@@ -13,12 +13,9 @@
 
     @foreach($images as $image)
     <div class="col-md-3">
-        {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.products.images.destroy', $product->brand->slug,$product->slug,$image->slug))) }}
-        <img class="img img-responsive" src="{{URL::to('/')}}/img/{{$image->location}}" alt="image">
-        @if(!Auth::guest() && Auth::user()->role == "admin")
-        <button class="btnRemoveImage glyphicon glyphicon-remove" type="submit"></button>
-        @endif
-        {{ Form::close() }}
+
+     <img class="img img-responsive" src="{{URL::to('/')}}/img/{{$image->location}}" alt="image">
+
     </div>
     @endforeach
 

@@ -60,31 +60,7 @@ Your brand has no products.
             </div>
         </form>
     </div>
-
-
-
-
-
-    @if(!Auth::guest() &&  Auth::user()->role == "admin")
-    {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.products.destroy', $brand->slug, $product->slug))) }}
-
-    (
-    {{ link_to_route('brands.products.edit', 'Edit', array($brand->slug, $product->slug), array('class' => 'btn btn-warning')) }},
-
-    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-    )
-    {{ Form::close() }}
-    @endif
-
     @endforeach
-
 </div>
-
-@endif
-@if(!Auth::guest() &&  Auth::user()->role == "admin")
-<p>
-    {{ link_to_route('brands.index', 'Back to Brands') }} |
-    {{ link_to_route('brands.products.create', 'Create Product', $brand->slug) }}
-</p>
 @endif
 @endsection

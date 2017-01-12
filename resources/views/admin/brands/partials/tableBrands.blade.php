@@ -21,9 +21,10 @@
                 <td>{{$brand->updated_at}}</td>
                 <td>
 
-                    {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('brands.destroy', $brand->slug))) }}
-                    {{ link_to_route('brands.show', '', array($brand->slug), array('class' => 'btn buttons glyphicon glyphicon-eye-open','data-toggle' => "tooltip",'title'=>"Show Brand"))}}
-                    {{ link_to_route('brands.edit', '', array($brand->slug), array('class' => 'btn btn-warning glyphicon glyphicon-edit','data-toggle' => "tooltip",'title'=>"Edit Brand"))}}
+                    {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('adminbrands.destroy', $brand->slug))) }}
+                  
+                    {{ link_to_route('adminbrands.show', '', array($brand->slug), array('class' => 'btn btn-primary glyphicon glyphicon-eye-open','data-toggle' => "tooltip",'title'=>"Show Products Brand"))}}
+                    {{ link_to_route('adminbrands.edit', '', array($brand->slug), array('class' => 'btn btn-warning glyphicon glyphicon-edit','data-toggle' => "tooltip",'title'=>"Edit Brand"))}}
                     <button data-toggle ="tooltip" title="Delete Brand" class="btn btn-danger glyphicon glyphicon-trash" type="submit"></button>
                     {{ Form::close() }}
                 </td>
@@ -31,5 +32,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ link_to_route('brands.create', 'New Brand') }}
+    {{ link_to_route('adminbrands.create', 'New Brand') }}
 </div>

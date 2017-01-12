@@ -1,4 +1,10 @@
 
+@extends('app')
+
+
+
+@section('content')
+
 <div class="container-fluid">
     <div class="col-md-2 menu-left">
         <nav class="navbar navbar-default" role="navigation">
@@ -22,10 +28,10 @@
                         <a id="botonUsers">User <span class="glyphicon glyphicon-menu-right"></span></a>
                     </li>
                     <li>
-                        <a id="botonBrands">Brand <span class="glyphicon glyphicon-menu-right"></span></a>
+                        <a href="{{route('adminbrands.index')}}" id="botonBrands">Brand <span class="glyphicon glyphicon-menu-right"></span></a>
                     </li>
                     <li>
-                        <a id="botonProducts">Product <span class="glyphicon glyphicon-menu-right"></span></a>
+                        <a href="{{route('products')}}" id="botonProducts">Product <span class="glyphicon glyphicon-menu-right"></span></a>
                     </li>
                     <li>
                         <a id="botonUploadXML">Upload XML <span class="glyphicon glyphicon-menu-right"></span></a>
@@ -61,11 +67,18 @@
     </div>
     <div class="col-md-10">
         <h5><strong><i class="glyphicon glyphicon-dashboard"></i> Admin Dashboard</strong></h5>
-
-        @include('admin.partials.tableUsers')
-        @include('admin.partials.tableBrands')
-        @include('admin.partials.tableProducts')
-        @include('admin.partials.formUploadXML')
+        
+            <h2 class="text-center headerCreateProduct">Create Brand</h2>
+            {{ Form::model(new App\Brand, ['route' => ['adminbrands.store'],'class'=>'form','files' => 'true']) }}
+            @include('brands/partials/_form', ['submit_text' => 'Create Brand'])
+            {{ Form::close() }}
+       
+        <div class="col-md-12"></div>
     </div>
-    <div class="col-md-12"></div>
-</div>
+
+
+
+
+
+    @endsection
+

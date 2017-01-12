@@ -7,35 +7,44 @@ use App\Brand;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Storage;
+use Auth;
 
-class BrandsController extends Controller {
-
+class BrandsAdminController extends Controller {
+    
     protected $rules = [
         'name' => ['required', 'min:3'],
         'slug' => ['required'],
         'logo' => ['required', 'max:200'],
     ];
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $brands = Brand::all();
-        return view('brands.index', compact('brands'));
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.brands.index', compact('brands','access'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('brands.create');
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.brands.create',  compact('access'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        
         $this->validate($request, $this->rules);
 
         $imagepath = "brands/";
@@ -53,55 +62,32 @@ class BrandsController extends Controller {
             //indicamos que queremos guardar un nuevo archivo en el disco local
             Storage::disk('brands')->put($nombre, \File::get($file));
 
-            return Redirect::route('brands.index')->with('message', 'Brand created');
+            return Redirect::route('adminbrands.index')->with('message', 'Brand created');
         }
-        return "tamaño de la imagen excesivo";
+        return Redirect::route('adminbrands.index')->with('message', "tamaño de la imagen excesivo");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project $project
-     * @return Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand, Request $request) {
-        if (isset($request->order)) {
-            $order = $request->order;
-            $request->session()->set('order', $order);
-        } else if ($request->session()->exists('order')) {
-            $order = $request->session()->get('order');
-        } else {
-            $order = "";
-        }
-
-        switch ($order) {
-            case 'ascPrice':
-                $products = $brand->products()->orderBy('price', 'asc')->paginate(8);
-                break;
-            case 'descPrice':
-                $products = $brand->products()->orderBy('price', 'desc')->paginate(8);
-                break;
-            case 'ascAlpha':
-                $products = $brand->products()->orderBy('name', 'asc')->paginate(8);
-                break;
-            case 'descAlpha':
-                $products = $brand->products()->orderBy('name', 'desc')->paginate(8);
-                break;
-            default :
-                $products = $brand->products()->paginate(8);
-        }
-
-        return view('brands.show', compact('brand', 'products'));
+    public function show(Brand $brand) {
+        $products = $brand->products()->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.brands.show', compact('brand', 'products','access'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project $project
-     * @return Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit(Brand $brand) {
-        return view('brands.edit', compact('brand'));
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.brands.edit', compact('brand','access'));
     }
 
     /**
@@ -112,11 +98,9 @@ class BrandsController extends Controller {
      */
     public function update(Brand $brand, Request $request) {
         $this->validate($request, $this->rules);
-
         $input = array_except(Input::all(), '_method');
         $brand->update($input);
-
-        return Redirect::route('brands.show', $brand->slug)->with('message', 'Brand updated.');
+        return Redirect::route('adminbrands.index')->with('message', 'Brand updated.');
     }
 
     /**
@@ -127,8 +111,7 @@ class BrandsController extends Controller {
      */
     public function destroy(Brand $brand) {
         $brand->delete();
-
-        return Redirect::route('brands.index')->with('message', 'Brand deleted.');
+        return Redirect::route('adminbrands.index')->with('message', 'Brand deleted.');
     }
 
 }

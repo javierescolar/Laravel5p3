@@ -23,6 +23,9 @@ Route::model('images', 'Image');
 Route::model('products', 'Product');
 Route::model('brands', 'Brand');
 
+Route::model('adminimages', 'Image');
+Route::model('adminproducts', 'Product');
+Route::model('adminbrands', 'Brand');
 
 //Forma de enmascarar las Url por el slug y no por el Id
 Route::bind('image', function($value, $route) {
@@ -35,10 +38,29 @@ Route::bind('brand', function($value, $route) {
 	return App\Brand::whereSlug($value)->first();
 });
 
+//Forma de enmascarar las Url por el slug y no por el Id
+Route::bind('adminimage', function($value, $route) {
+	return App\Image::whereSlug($value)->first();
+});
+Route::bind('adminproduct', function($value, $route) {
+	return App\Product::whereSlug($value)->first();
+});
+Route::bind('adminbrand', function($value, $route) {
+	return App\Brand::whereSlug($value)->first();
+});
+
 //creacion de rutas resources más adaptadas al proyecto y sus dependencias
-Route::resource('brands', 'BrandsController');
-Route::resource('brands.products', 'ProductsController');
-Route::resource('brands.products.images', 'ImagesController');
+Route::resource('brands', 'BrandsController',['only'=>['show']]);
+Route::resource('brands.products', 'ProductsController',['only'=>['show']]);
+Route::resource('brands.products.images', 'ImagesController',['only'=>['index']]);
+
+Route::resource('adminbrands', 'BrandsAdminController');
+Route::resource('adminbrands.adminproducts', 'ProductsAdminController');
+Route::resource('adminbrands.adminproducts.adminimages', 'ImagesAdminController');
+Route::get('adminproducts',[
+    'uses'=> 'ProductsAdminController@index',
+    'as' => 'products'
+]);
 
 //get clase auth
 Route::get('login',[
@@ -91,6 +113,11 @@ Route::post('deleteProfile',[
     'as' => 'delete'
 ]);
 
+
 Route::post('deleteUser/{id}','AdminController@deleteUser');
 Route::post('actdesuser/{id}/active/{active}','AdminController@actdesUser');
 Route::post('uploadXML','AdminController@uploadXML');
+Route::get('adminusers',[
+    'uses'=> 'AdminController@getUsers',
+    'as' => 'adminusers'
+]);
