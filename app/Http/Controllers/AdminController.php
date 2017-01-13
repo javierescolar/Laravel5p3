@@ -25,14 +25,12 @@ class AdminController extends Controller {
         }
         return redirect()->action('HomeController@index');
     }
-    
-    public function getUsers(){
+
+    public function getUsers() {
         $users = User::all();
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
         return view('admin.users.index', compact('users', 'access'));
-
     }
-    
 
     public function deleteUser($id) {
         $user = User::where('id', '=', $id)->delete();
@@ -45,12 +43,33 @@ class AdminController extends Controller {
         return redirect('/adminusers')->with('message', 'User modified successfully');
     }
 
+    public function getFormUploadXML() {
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        return view('admin.partials.formUploadXML', compact('access'));
+    }
+
     public function uploadXML(Request $request) {
         $file = $request->file('xmlFile');
         //obtenemos el nombre del archivo
-        $nombre = "uplaodFileXML.xml";
+        $nombre = date("Y_m_d_His") . "_uplaodFileXML.xml";
         //indicamos que queremos guardar un nuevo archivo en el disco local
         Storage::disk('xml')->put($nombre, \File::get($file));
+        $ruta = public_path()."/xml/".$nombre;
+        $xml = simplexml_load_file($ruta);
+        insertDataXML($xml);
+        //Una vez subido el fichero lo cargamos y lo ejecutamos
+    }
+    
+    public function insertDataXML($xml){
+        foreach($xml->brands as $brand){
+            $xmlBrand['name'] = $brand->name;
+            $xmlBrand['slug'] = $brand->slug;
+            $xmlBrand['logo'] = $brand->logo;
+            $brand = Brand::create($xmlBrand)->save();
+            $lastInsertIdBrand = $brand->id;
+            foreach ($brand->products as $product)
+            
+        }
     }
 
 }

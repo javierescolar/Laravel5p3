@@ -10,18 +10,29 @@ use Redirect;
 use Storage;
 use Auth;
 
-class ProductsAdminController extends Controller
-{
+class ProductsAdminController extends Controller {
+    
+    protected $rules = [
+        'name' => ['required', 'min:3'],
+        'slug' => ['required'],
+        'slogan' => ['required'],
+        'description' => ['required'],
+        'characteristic_1' => ['required'],
+        'characteristic_2' => ['required'],
+        'characteristic_3' => ['required'],
+        'price' => ['required'],
+        'stock' => ['required'],
+        
+    ];
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
         $products = Product::all();
-        return view('admin.products.index', compact('products','access'));
+        return view('admin.products.index', compact('products', 'access'));
     }
 
     /**
@@ -29,9 +40,9 @@ class ProductsAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Brand $brand) {
+    public function create(Brand $brand) {
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-        return view('admin.products.create', compact('brand','access'));
+        return view('admin.products.create', compact('brand', 'access'));
     }
 
     /**
@@ -40,9 +51,12 @@ class ProductsAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Brand $brand,Request $request) {
+        $this->validate($request, $this->rules);
+        $input = Input::all();
+        $input['brand_id'] = $brand->id;   
+        Product::create($input);
+        return Redirect::route('adminbrands.show', $brand->slug)->with('message', 'Product created.');
     }
 
     /**
@@ -51,8 +65,7 @@ class ProductsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -62,10 +75,9 @@ class ProductsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand, Product $product)
-    {
+    public function edit(Brand $brand, Product $product) {
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-       return view('admin.products.edit', compact('brand', 'product','access'));
+        return view('admin.products.edit', compact('brand', 'product', 'access'));
     }
 
     /**
@@ -75,9 +87,13 @@ class ProductsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Brand $brand, Product $product,Request $request) {
+        $this->validate($request, $this->rules);
+
+        $input = array_except(Input::all(), '_method');
+        $product->update($input);
+
+        return redirect()->route('adminbrands.adminproducts.edit', [$brand->slug, $product->slug])->with('message', 'product updated.');
     }
 
     /**
@@ -86,8 +102,9 @@ class ProductsAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand, Product $product,  Request $request) {
+    public function destroy(Brand $brand, Product $product, Request $request) {
         $product->delete();
         return Redirect::route('products')->with('message', 'Product deleted.');
     }
+
 }

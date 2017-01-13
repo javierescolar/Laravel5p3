@@ -263,7 +263,17 @@ Image credits: unsplash.com
   position: absolute;
   top:0.2em;
   right: 1.5em;
+  color: white;
+  border-color: red;
+  background-color: red;
 }
+
+.btnRemoveImage:hover{
+  background-color:rgb(234, 22, 22);
+  border-color:#ef0000;
+  color:#eee;
+}
+
 
 .logoBrands{
   height:1.5em;

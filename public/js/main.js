@@ -6,20 +6,22 @@ $(document).ready(function () {
             document.getElementById('formOrderBrands').submit();
         });
     }
-    if (document.getElementById('buscadorAdminBrands') ||
-            document.getElementById('buscadorAdminProducts') ||
-            document.getElementById('buscadorAdminUsers')) {
+    if (document.getElementById('buscadorAdminBrands')) {
         document.getElementById('buscadorAdminBrands').addEventListener('keyup', function () {
             var txt = this.value.toLowerCase();
             searchAdminPanel('tableBrands', 1, txt);
         });
-        document.getElementById('buscadorAdminProducts').addEventListener('keyup', function () {
-            var txt = this.value.toLowerCase();
-            searchAdminPanel('tableProducts', 2, txt);
-        });
+    }
+    if (document.getElementById('buscadorAdminUsers')) {
         document.getElementById('buscadorAdminUsers').addEventListener('keyup', function () {
             var txt = this.value.toLowerCase();
             searchAdminPanel('tableUsers', 1, txt);
+        });
+    }
+    if (document.getElementById('buscadorAdminProducts')) {
+        document.getElementById('buscadorAdminProducts').addEventListener('keyup', function () {
+            var txt = this.value.toLowerCase();
+            searchAdminPanel('tableProducts', 2, txt);
         });
     }
     var numInputImage = 6;
@@ -49,7 +51,7 @@ $(document).ready(function () {
             inputFile.setAttribute('type', 'file');
             inputFile.setAttribute('name', 'image[' + numInputImage + ']');
             inputFile.setAttribute('class', 'form-control');
-            inputFile.setAttribute('required','true');
+            inputFile.setAttribute('required', 'true');
             labelFile.textContent = "Image-" + numInputImage;
             div_input_file.appendChild(labelFile);
             div_input_file.appendChild(inputFile);
@@ -102,31 +104,6 @@ $(document).ready(function () {
     $('[data-toggle=collapse]').click(function () {
         // toggle icon
         $(this).find("i").toggleClass("glyphicon-chevron-right glyphicon-chevron-down");
-    });
-
-    $("#botonBrands").click(function () {
-        $("#contentTableBrands").show();
-        $("#contentTableProducts").hide();
-        $("#contentTableUsers").hide();
-        $("#contentFormUploadXML").hide();
-    });
-    $("#botonProducts").click(function () {
-        $("#contentTableBrands").hide();
-        $("#contentTableProducts").show();
-        $("#contentTableUsers").hide();
-        $("#contentFormUploadXML").hide();
-    });
-    $("#botonUsers").click(function () {
-        $("#contentTableBrands").hide();
-        $("#contentTableProducts").hide();
-        $("#contentTableUsers").show();
-        $("#contentFormUploadXML").hide();
-    });
-    $("#botonUploadXML").click(function () {
-        $("#contentTableBrands").hide();
-        $("#contentTableProducts").hide();
-        $("#contentTableUsers").hide();
-        $("#contentFormUploadXML").show();
     });
 
 });

@@ -1,7 +1,15 @@
 @extends('app')
 
 @section('content')
-<!--tabla de productos-->
-
+<div class="container-fluid">
+    <div class="col-md-2 menu-left">
+        @include('admin.partials.leftNavAdmin')
+    </div>
+    <div class="col-md-10">
+        <h5><strong><i class="glyphicon glyphicon-dashboard"></i> Admin Dashboard</strong></h5>
+        
+            @include('admin.panelAdmin')
+        <div class="col-md-12"></div>
+    </div>
 
 @endsection

@@ -10,41 +10,26 @@ use Storage;
 use Auth;
 
 class BrandsAdminController extends Controller {
-    
+
     protected $rules = [
         'name' => ['required', 'min:3'],
         'slug' => ['required'],
         'logo' => ['required', 'max:200'],
     ];
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index() {
         $brands = Brand::all();
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-        return view('admin.brands.index', compact('brands','access'));
+        return view('admin.brands.index', compact('brands', 'access'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-        return view('admin.brands.create',  compact('access'));
+        return view('admin.brands.create', compact('access'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
-        
+
         $this->validate($request, $this->rules);
 
         $imagepath = "brands/";
@@ -67,48 +52,25 @@ class BrandsAdminController extends Controller {
         return Redirect::route('adminbrands.index')->with('message', "tamaño de la imagen excesivo");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Brand $brand) {
         $products = $brand->products()->get();
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-        return view('admin.brands.show', compact('brand', 'products','access'));
+        return view('admin.brands.show', compact('brand', 'products', 'access'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Brand $brand) {
         $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
-        return view('admin.brands.edit', compact('brand','access'));
+        return view('admin.brands.edit', compact('brand', 'access'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Project $project
-     * @return Response
-     */
     public function update(Brand $brand, Request $request) {
         $this->validate($request, $this->rules);
         $input = array_except(Input::all(), '_method');
-        $brand->update($input);
-        return Redirect::route('adminbrands.index')->with('message', 'Brand updated.');
+        $brand_id = $request->brand_id;
+        $brand = Brand::where('id', '=', $brand_id)->update(["name"=>$input['name'],"slug"=>$input["slug"],"logo"=>$input["logo"]]);
+        return redirect()->route('adminbrands.edit', [$input["slug"]])->with('message', 'Brand updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Project $project
-     * @return Response
-     */
     public function destroy(Brand $brand) {
         $brand->delete();
         return Redirect::route('adminbrands.index')->with('message', 'Brand deleted.');

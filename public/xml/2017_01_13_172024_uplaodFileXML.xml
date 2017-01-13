@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <brands>
     <brand>
         <name>Brand XML</name>
@@ -32,5 +31,6 @@
                 </images>
             </product>
         </products>
-        <brand>
+    </brand>
 </brands>
+
