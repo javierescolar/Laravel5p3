@@ -13,9 +13,6 @@
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-//Rutas para el Administrador
-Route::get('homeAdmin', 'AdminController@index');
-
 Route::get('search', 'HomeController@search');
 
 // Provide controller methods with object instead of ID
@@ -54,9 +51,27 @@ Route::resource('brands', 'BrandsController', ['only' => ['show']]);
 Route::resource('brands.products', 'ProductsController', ['only' => ['show']]);
 Route::resource('brands.products.images', 'ImagesController', ['only' => ['index']]);
 
-Route::resource('adminbrands', 'BrandsAdminController');
-Route::resource('adminbrands.adminproducts', 'ProductsAdminController');
-Route::resource('adminbrands.adminproducts.adminimages', 'ImagesAdminController');
+Route::group(['middleware' => ['admin']], function () {
+    //Rutas para el Administrador
+    Route::get('homeAdmin', 'AdminController@index');
+    Route::resource('adminbrands', 'BrandsAdminController');
+    Route::resource('adminbrands.adminproducts', 'ProductsAdminController');
+    Route::resource('adminbrands.adminproducts.adminimages', 'ImagesAdminController');
+    //Rutas de admin controller
+    Route::post('deleteUser/{id}', 'AdminController@deleteUser');
+    Route::post('actdesuser/{id}/active/{active}', 'AdminController@actdesUser');
+    Route::post('uploadXML', 'AdminController@uploadXML');
+    Route::get('adminusers', [
+        'uses' => 'AdminController@getUsers',
+        'as' => 'adminusers'
+    ]);
+    Route::get('amdinUploadXML', [
+        'uses' => 'AdminController@getFormUploadXML',
+        'as' => 'amdinUploadXML'
+    ]);
+});
+
+
 //Agrego una ruta necesaria para seguir con el patron de rutas
 Route::get('adminproducts', [
     'uses' => 'ProductsAdminController@index',
@@ -100,29 +115,20 @@ Route::post('register', [
 Route::get('confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\RegisterController@confirmRegister');
 
 //Edicion de perfil de usuario
-Route::get('profile', [
-    'uses' => 'UserController@getProfile',
-    'as' => 'profile'
-]);
-Route::post('profile', [
-    'uses' => 'UserController@editProfile',
-    'as' => 'profile'
-]);
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile', [
+        'uses' => 'UserController@getProfile',
+        'as' => 'profile'
+    ]);
+    Route::post('profile', [
+        'uses' => 'UserController@editProfile',
+        'as' => 'profile'
+    ]);
+    Route::post('deleteProfile', [
+        'uses' => 'UserController@deleteProfile',
+        'as' => 'delete'
+    ]);
+});
 
-Route::post('deleteProfile', [
-    'uses' => 'UserController@deleteProfile',
-    'as' => 'delete'
-]);
 
-//Rutas de admin controller
-Route::post('deleteUser/{id}', 'AdminController@deleteUser');
-Route::post('actdesuser/{id}/active/{active}', 'AdminController@actdesUser');
-Route::post('uploadXML', 'AdminController@uploadXML');
-Route::get('adminusers', [
-    'uses' => 'AdminController@getUsers',
-    'as' => 'adminusers'
-]);
-Route::get('amdinUploadXML', [
-    'uses' => 'AdminController@getFormUploadXML',
-    'as' => 'amdinUploadXML'
-]);
+
