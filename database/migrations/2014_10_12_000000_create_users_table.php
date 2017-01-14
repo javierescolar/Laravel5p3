@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('phone1')->default('');
+            $table->string('phone2')->default('');
+            $table->string('profession')->default('');
+            $table->date('birthdate')->default("1900-01-01");
+            $table->string('gener')->default('');
             $table->string('image')->default('users/user_default.png');
             $table->string('aboutme',8000);
             $table->enum('role',['user','admin'])->default('user');

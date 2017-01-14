@@ -3,25 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/ImagesController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/images/create.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/products/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/images/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/products/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/BrandsController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/create.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/BrandsAdminController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/ProductsAdminController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/products/create.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/ImagesAdminController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Http/Controllers/ProductsController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/app/Brand.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/partials/tableBrands.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/partials/tableBrandProducts.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/admin/brands/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel5p3/resources/views/auth/profile.blade.php</file>
         </group>
     </open-files>
 </project-private>
