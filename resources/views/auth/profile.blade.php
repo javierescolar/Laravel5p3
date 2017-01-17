@@ -111,11 +111,11 @@
 </div>
 <script type="text/javascript">
 
-    var clientId = '489138468595-cdv09pvrr01l2ev235aqi5glvthscvsj.apps.googleusercontent.com';
-    var apiKey = 'AIzaSyBmpsaiEeRNwHh9U6qTovqTniqK_n7a7a4';
+    var clientId = '489138468595-rclkke5etctb7ldja7g7a7ujs7q9c51e.apps.googleusercontent.com';
+    var apiKey = 'd1G77y7pVo8YRup9aeO9bqSC';
     // To enter one or more authentication scopes, refer to the documentation for the API.
    
-    var scopes = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+    var scopes = 'https://www.googleapis.com/auth/userinfo.profile';
     // Use a button to handle authentication the first time.
     function handleClientLoad() {
         gapi.client.setApiKey(apiKey);
@@ -145,7 +145,7 @@
                 'userId': 'me'
             });
             request.execute(function (resp) {
-                var options = document.getElementsByTagName('option');
+               
                 document.getElementById('name').value = resp.displayName;
                 //document.getElementById('email').value = resp.emails[0].value;
                 //options[0].selected = (resp.gender === 'male') ? true : false;

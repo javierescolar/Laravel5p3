@@ -12,6 +12,15 @@ use Redirect;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
+    
+    protected $rules = [
+        'name' => ['required','min:5'],
+        'email' => ['required'],
+        'phone1' => ['regex:/[0-9]{9}/'],
+        'phone2' => ['regex:/[0-9]{9}/'],
+        'birthdate' => ['date_format:Y-m-d'],
+        'profession'=>['min:3'],
+    ];
 
     public function getProfile() {
         $user = Auth::user();
@@ -19,6 +28,8 @@ class UserController extends Controller {
     }
 
     public function editProfile(Request $request) {
+        $this->validate($request, $this->rules);
+        
         $imagepath = "users/";
 
         //obtenemos el campo file definido en el formulario
