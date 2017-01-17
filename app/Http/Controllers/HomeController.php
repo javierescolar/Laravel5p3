@@ -40,7 +40,8 @@ class HomeController extends Controller {
                     ->trace(true)
                     ->cache(WSDL_CACHE_NONE);
         });
-        $arrayIps = ["62.48.135.22", "81.34.123.49", "216.98.123.99"];
+       
+        $arrayIps = ["83.42.84.62","90.68.31.84", "81.34.123.49"];
         $IP = $arrayIps[array_rand($arrayIps)];
         $data = ['sIPAddress' => $IP];
         $dataLocation = null;
@@ -52,15 +53,15 @@ class HomeController extends Controller {
 
 
         switch ($region) {
-            case 'New York':
-                $localizacion['lat'] = 40.7509376;
-                $localizacion['lng'] = -73.9875572;
-                $localizacion['ciudad'] = 'New York';
+            case 'Catalonia':
+                $localizacion['lat'] = 41.529511;
+                $localizacion['lng'] = 1.772575;
+                $localizacion['ciudad'] = 'Hosptalets de Pierola';
                 break;
-            case 'Viseu':
-                $localizacion['lat'] = 41.1622023;
-                $localizacion['lng'] = -8.6568724;
-                $localizacion['ciudad'] = 'Porto';
+            case 'Cantabria':
+                $localizacion['lat'] = 43.377822;
+                $localizacion['lng'] = -4.396591;
+                $localizacion['ciudad'] = 'San Vicente de la Barquera';
                 break;
             case 'Madrid':
                 $localizacion['lat'] = 40.549474;
