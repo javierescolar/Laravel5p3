@@ -21,9 +21,17 @@
 
 
 <div class="form-group">
-    <div class="col-md-12">
+    <div class="col-md-10">
         {{ Form::label('slogan', 'Slogan:') }}
         {{ Form::text('slogan',null,['class'=>'form-control']) }}
+    </div>
+    <div class="col-md-2">
+        {{ Form::label('appears_on_offer', 'Appears on offer:') }}
+        @if(isset($product) && $product->appears_on_offer == 1)
+        {{ Form::checkbox('appears_on_offer',null,true,['class'=>'form-control']) }}
+        @else
+         {{ Form::checkbox('appears_on_offer',null,false,['class'=>'form-control']) }}
+        @endif
     </div>
 
 </div>

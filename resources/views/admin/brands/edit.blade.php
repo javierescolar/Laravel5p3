@@ -13,7 +13,7 @@
 
         {{ Form::model($brand, ['method' => 'PATCH', 'route' => ['adminbrands.update', $brand->id]]) }}
         <input type="hidden" name="brand_id" value="{{$brand->id}}">
-        @include('brands/partials/_form', ['submit_text' => 'Edit Brand'])
+        @include('admin/brands/partials/_form', ['submit_text' => 'Edit Brand'])
         {{ Form::close() }}
         <div class="col-md-12"></div>
     </div>

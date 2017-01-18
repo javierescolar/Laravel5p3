@@ -34,6 +34,7 @@ class CreateBrandsAndProductsTables extends Migration
                         $table->string('characteristic_2')->default('');
                         $table->string('characteristic_3')->default('');
 			$table->float('price');
+                        $table->boolean('appears_on_offer')->default(false);
                         $table->integer('discount')->default(0);
                         $table->integer('stock')->default(0);
 			$table->timestamps();

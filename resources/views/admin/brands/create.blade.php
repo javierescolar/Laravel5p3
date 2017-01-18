@@ -14,7 +14,7 @@
         
             <h2 class="text-center headerCreateProduct">Create Brand</h2>
             {{ Form::model(new App\Brand, ['route' => ['adminbrands.store'],'class'=>'form','files' => 'true']) }}
-            @include('brands/partials/_form', ['submit_text' => 'Create Brand'])
+            @include('admin/brands/partials/_form', ['submit_text' => 'Create Brand'])
             {{ Form::close() }}
        
         <div class="col-md-12"></div>

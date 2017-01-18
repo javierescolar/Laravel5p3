@@ -15,7 +15,7 @@
                 {{ link_to_route('adminbrands.adminproducts.adminimages.create', 'Add images to the product',array($product->brand->slug,$product->slug)) }}
             </div>
         {{ Form::model($product, ['method' => 'PATCH', 'route' => ['adminbrands.adminproducts.update', $brand->slug, $product->slug]]) }}
-        @include('products/partials/_form', ['submit_text' => 'Edit Product'])
+        @include('admin/products/partials/_form', ['submit_text' => 'Edit Product'])
         {{ Form::close() }}
     </div>
     <div class="col-md-12"></div>

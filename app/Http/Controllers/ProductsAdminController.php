@@ -54,7 +54,8 @@ class ProductsAdminController extends Controller {
     public function store(Brand $brand,Request $request) {
         $this->validate($request, $this->rules);
         $input = Input::all();
-        $input['brand_id'] = $brand->id;   
+        $input['brand_id'] = $brand->id; 
+        $input['appears_on_offer'] = (isset($input['appears_on_offer'])) ? 1 : 0;
         Product::create($input);
         return Redirect::route('adminbrands.show', $brand->slug)->with('message', 'Product created.');
     }
@@ -91,6 +92,7 @@ class ProductsAdminController extends Controller {
         $this->validate($request, $this->rules);
 
         $input = array_except(Input::all(), '_method');
+        $input['appears_on_offer'] = (isset($input['appears_on_offer'])) ? 1 : 0;
         $product->update($input);
 
         return redirect()->route('adminbrands.adminproducts.edit', [$brand->slug, $product->slug])->with('message', 'product updated.');
