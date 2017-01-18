@@ -18,8 +18,6 @@
                     </form>
                 </div>
                 <div class="panel-body">
-
-
                     <form class="form-horizontal" role="form" method="POST" action="{{route('profile')}}" enctype="multipart/form-data">
                         <div class="form-group">
                             <img src="img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
@@ -94,10 +92,10 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                
-                                <p id="authorize-button" class="btn btn-danger col-md-offset-5">
+
+                                <a href="{{url('profile/google/google')}}" id="authorize-button" class="btn btn-danger col-md-offset-5">
                                     Google +
-                                </p>
+                                </a>
                                 <button type="submit" class="btn btn-primary col-md-offset-1">
                                     Save Profile
                                 </button>
@@ -109,50 +107,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
 
-    var clientId = '489138468595-rclkke5etctb7ldja7g7a7ujs7q9c51e.apps.googleusercontent.com';
-    var apiKey = 'd1G77y7pVo8YRup9aeO9bqSC';
-    // To enter one or more authentication scopes, refer to the documentation for the API.
-   
-    var scopes = 'https://www.googleapis.com/auth/userinfo.profile';
-    // Use a button to handle authentication the first time.
-    function handleClientLoad() {
-        gapi.client.setApiKey(apiKey);
-        window.setTimeout(checkAuth, 1);
-    }
-    function checkAuth() {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
-    }
-    function handleAuthResult(authResult) {
-        var authorizeButton = document.getElementById('authorize-button');
-        if (authResult && !authResult.error) {
 
-            makeApiCall();
-        } else {
-
-            authorizeButton.onclick = handleAuthClick;
-        }
-    }
-    function handleAuthClick(event) {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-        return false;
-    }
-    // Load the API and make an API call.  Display the results on the screen.
-    function makeApiCall() {
-        gapi.client.load('plus', 'v1', function () {
-            var request = gapi.client.plus.people.get({
-                'userId': 'me'
-            });
-            request.execute(function (resp) {
-               
-                document.getElementById('name').value = resp.displayName;
-                //document.getElementById('email').value = resp.emails[0].value;
-                //options[0].selected = (resp.gender === 'male') ? true : false;
-
-            });
-        });
-    }
-</script>
-<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 @endsection

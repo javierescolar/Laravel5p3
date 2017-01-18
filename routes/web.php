@@ -14,7 +14,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/map', 'HomeController@map');
 Route::get('search', 'HomeController@search');
-
+//Google + Auth
 // Provide controller methods with object instead of ID
 Route::model('images', 'Image');
 Route::model('products', 'Product');
@@ -128,6 +128,8 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'UserController@deleteProfile',
         'as' => 'delete'
     ]);
+    Route::get('profile/google/{provider?}', 'SocialController@getSocialAuth');
+    Route::get('profile/callback/{provider?}', 'SocialController@getSocialAuthCallback');
 });
 
 

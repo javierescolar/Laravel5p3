@@ -6,7 +6,7 @@
     
     <div class="col-md-4">
         <h1>The nearest store is located in ...</h1>
-        <h3 class="marginTopLeft">{{$localizacion['ciudad']}}</h3>
+        <h3 class="marginTopLeft" style="margin-left: 0em;">{{$localizacion['ciudad']}}</h3>
         <h5 class="marginTopLeft">Longitud: {{$localizacion['lng']}}</h5>
         <h5 class="marginTopLeft">Latitud: {{$localizacion['lat']}}</h5>
        
@@ -20,25 +20,8 @@
 </div>
 
 
-<script>
-    var map, marker;
-
-    function initMap() {
-        var lat = parseFloat(document.getElementById("coor").dataset.lat);
-        var lng = parseFloat(document.getElementById("coor").dataset.lng);
-        var nombre = document.getElementById("coor").dataset.name;
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: lat, lng: lng},
-            zoom: 12
-        });
-        var marker = new google.maps.Marker({
-            position: {lat: lat, lng: lng},
-            map: map,
-            title: nombre
-        });
-
-    }
+<script src="{{ URL::to('/') }}/js/map.js">
+    
 </script>
 
 <script async defer
