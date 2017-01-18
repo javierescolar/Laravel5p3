@@ -8,8 +8,8 @@
                 <td>Id</td>
                 <td>Brand</td>
                 <td>Name</td>
-                <td>Price</td>
                 <td>Offer/Discount</td>
+                <td>Appears on offer</td>
                 <td>Created</td>
                 <td>Updated</td>
                 <td>Options</td>
@@ -21,8 +21,8 @@
                 <td>{{$product->id}}</td>
                 <td>{{$product->brand->name}}</td>
                 <td>{{$product->name}}</td>
-                <td>{{$product->price}}</td>
                 <td>{{$product->discount}}</td>
+                <td>{{$product->appears_on_offer}}</td>
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
                 <td> 
