@@ -65,6 +65,7 @@ class BrandsController extends Controller {
      * @return Response
      */
     public function show(Brand $brand, Request $request) {
+        $numPaginate = 4;
         if (isset($request->order)) {
             $order = $request->order;
             $request->session()->set('order', $order);
@@ -76,19 +77,19 @@ class BrandsController extends Controller {
 
         switch ($order) {
             case 'ascPrice':
-                $products = $brand->products()->orderBy('price', 'asc')->paginate(8);
+                $products = $brand->products()->orderBy('price', 'asc')->paginate($numPaginate);
                 break;
             case 'descPrice':
-                $products = $brand->products()->orderBy('price', 'desc')->paginate(8);
+                $products = $brand->products()->orderBy('price', 'desc')->paginate($numPaginate);
                 break;
             case 'ascAlpha':
-                $products = $brand->products()->orderBy('name', 'asc')->paginate(8);
+                $products = $brand->products()->orderBy('name', 'asc')->paginate($numPaginate);
                 break;
             case 'descAlpha':
-                $products = $brand->products()->orderBy('name', 'desc')->paginate(8);
+                $products = $brand->products()->orderBy('name', 'desc')->paginate($numPaginate);
                 break;
             default :
-                $products = $brand->products()->paginate(8);
+                $products = $brand->products()->paginate($numPaginate);
         }
 
         return view('brands.show', compact('brand', 'products'));

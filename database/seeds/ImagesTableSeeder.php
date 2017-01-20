@@ -18,12 +18,18 @@ class ImagesTableSeeder extends Seeder {
             ['id' => 3, 'product_id' => 4, 'slug' => 'image-3', 'location' => 'products/big_galaxys4.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => 4, 'product_id' => 4, 'slug' => 'image-4', 'location' => 'products/galaxys4.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => 5, 'product_id' => 5, 'slug' => 'image-5', 'location' => 'products/big_onem9.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 6, 'product_id' => 2, 'slug' => 'image-6', 'location' => 'products/big_galaxys5.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 7, 'product_id' => 2, 'slug' => 'image-7', 'location' => 'products/galaxys5.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 6, 'product_id' => 8, 'slug' => 'image-6', 'location' => 'products/big_galaxys5.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 7, 'product_id' => 8, 'slug' => 'image-7', 'location' => 'products/galaxys5.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => 8, 'product_id' => 6, 'slug' => 'image-8', 'location' => 'products/big_galaxynote7.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => 9, 'product_id' => 7, 'slug' => 'image-9', 'location' => 'products/big_htc10.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => 10, 'product_id' => 3, 'slug' => 'image-10', 'location' => 'products/galaxyedge6.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
-        );
+            ['id' => 11, 'product_id' => 2, 'slug' => 'image-11', 'location' => 'products/big_iphone5.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 12, 'product_id' => 2, 'slug' => 'image-12', 'location' => 'products/iphone5.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 13, 'product_id' => 5, 'slug' => 'image-13', 'location' => 'products/one9.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 14, 'product_id' => 6, 'slug' => 'image-14', 'location' => 'products/galaxynote7.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 15, 'product_id' => 7, 'slug' => 'image-15', 'location' => 'products/htc10.jpg', 'offer' => true, 'carrusel' => false, 'gallery' => false, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 16, 'product_id' => 3, 'slug' => 'image-16', 'location' => 'products/big_galaxyedge6.jpg', 'offer' => false, 'carrusel' => true, 'gallery' => true, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            );
 
         //// Uncomment the below to run the seeder
         DB::table('images')->insert($images);
