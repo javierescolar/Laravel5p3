@@ -14,14 +14,14 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        @foreach($imagesCarruselGallery as $key=>$image)
+        @foreach($imagesCarruselGallery as $key => $image)
         @if($key == 0)
         <div class="item active">
-            <img src="{{URL::to('/')}}/img/products/g.jpg" alt="Chania" height="200">
+            <img src="{{URL::to('/')}}/img/{{$image->location}}" alt="image" height="200">
         </div>
         @else
         <div class="item">
-            <img src="{{URL::to('/')}}/img/products/g.jpg" alt="Chania" height="200">
+            <img src="{{URL::to('/')}}/img/{{$image->location}}" alt="image" height="200">
         </div>
         @endif
         @endforeach

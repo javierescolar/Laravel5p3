@@ -35,7 +35,7 @@
             <div class="push"></div>
         </div>
         
-
+        @include('partials.footer')
         <script type="text/javascript" src="{{ URL::to('/') }}/js/jquery-1.12.1.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/main.js"></script>

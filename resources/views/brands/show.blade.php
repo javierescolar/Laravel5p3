@@ -32,8 +32,14 @@ Your brand has no products.
     @foreach( $products as $product )
 
     <div class="col-md-3">
+        
         <h3>
             <a href="{{ route('brands.products.show', [$brand->slug, $product->slug]) }}">{{ $product->name }}</a>
+           @if($product->images->where('offer',1)->count())
+           <img class="img img-responsive imgOfferHome" src="{{URL::to('/')}}/img/{{$product->images->where('offer',1)->first()->location}}">
+           @endif
+            
+         
         </h3>
         @if ($product->discount > 0)
             @if(!Auth::guest() &&  Auth::user()->role == "user")

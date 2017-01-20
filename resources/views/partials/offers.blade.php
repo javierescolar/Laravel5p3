@@ -3,7 +3,7 @@
     @if($offer->product->appears_on_offer == 1)
     <div class="col-md-4 col-xs-12">
         <div class="col-md-6">
-            <img class="img img-responsive" src="{{URL::to('/')}}/img/{{$offer->location}}"></img>
+            <img class="img img-responsive imageOfferHome" src="{{URL::to('/')}}/img/{{$offer->location}}"></img>
             @if ($offer->product->discount > 0)
             <p>
                 Descuento del {{$offer->product->discount}}%
