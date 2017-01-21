@@ -47,7 +47,7 @@ Your brand has no products.
             {{number_format($product->price - ($product->price * (($product->discount + Auth::user()->discount_user)/100)),2)}}
             €
         </h4>
-        <p class="text-center">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
+        <p class="text-center discount">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
         @else
        
         <h4 class="text-center">
@@ -56,7 +56,7 @@ Your brand has no products.
              {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}
              €
         </h4>
-         <p class="text-center">Descuento del {{$product->discount}}%</p>
+         <p class="text-center discount">Descuento del {{$product->discount}}%</p>
         @endif
         @else
         <h4 class="text-center">Price: {{$product->price}} €</h4>
@@ -79,4 +79,5 @@ Your brand has no products.
     @endforeach
 </div>
 @endif
+
 @endsection

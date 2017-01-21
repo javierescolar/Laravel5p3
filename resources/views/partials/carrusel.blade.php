@@ -16,12 +16,12 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         @foreach($carruselProducts as $key=>$carrusel)
-        
-            @if($key==0)
-            <div class="item slides active">
+
+        @if($key==0)
+        <div class="item slides active">
             @else
             <div class="item slides">
-            @endif
+                @endif
                 <div class="slide-{{$key + 1}}"></div>
                 <div class="hero">
                     <hgroup>
@@ -34,9 +34,9 @@
                             <h3>Get start your next awesome project</h3>
                         </hgroup>
 
-                  </div>
-            </div>
+                    </div>
+                </div>
 
                 @endforeach
-    </div>  
-</div>
+            </div>  
+        </div>

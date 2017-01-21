@@ -13,7 +13,7 @@ use Redirect;
 class HomeController extends Controller {
 
     public function index() {
-        $carruselProducts = Image::where('carrusel', 1)->get();
+        $carruselProducts = Image::where('carrusel', 1)->orderByRaw('RAND()')->take(3)->get();;
         $offerProducts = Image::where('offer', 1)->get();
         if (!Auth::guest()) {
             if (Auth::user()->role == "admin") {

@@ -5,9 +5,15 @@
         <div class="col-md-6">
             <img class="img img-responsive imageOfferHome" src="{{URL::to('/')}}/img/{{$offer->location}}"></img>
             @if ($offer->product->discount > 0)
-            <p>
-                Descuento del {{$offer->product->discount}}%
-            </p>
+                @if(!Auth::guest() &&  Auth::user()->role == "user")
+                <p class="discount">
+                    Descuento del {{$offer->product->discount+Auth::user()->discount_user}}%
+                </p>
+                @else
+                <p class="discount">
+                    Descuento del {{$offer->product->discount}}%
+                </p>
+                @endif
             @endif
 
         </div>

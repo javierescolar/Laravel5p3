@@ -12,7 +12,7 @@ use Auth;
 class BrandsAdminController extends Controller {
 
     protected $rules = [
-        'name' => ['required', 'min:3'],
+        'name' => ['required', 'min:2'],
         'slug' => ['required'],
         'logo' => ['required', 'max:200'],
     ];
@@ -67,7 +67,7 @@ class BrandsAdminController extends Controller {
         $this->validate($request, $this->rules);
         $input = array_except(Input::all(), '_method');
         $brand_id = $request->brand_id;
-        $brand = Brand::where('id', '=', $brand_id)->update(["name"=>$input['name'],"slug"=>$input["slug"],"logo"=>$input["logo"]]);
+        $brand = Brand::where('id', '=', $brand_id)->update(["name" => $input['name'], "slug" => $input["slug"], "logo" => $input["logo"]]);
         return redirect()->route('adminbrands.edit', [$input["slug"]])->with('message', 'Brand updated.');
     }
 
