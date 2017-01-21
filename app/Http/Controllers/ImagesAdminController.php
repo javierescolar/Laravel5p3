@@ -67,7 +67,7 @@ class ImagesAdminController extends Controller
             }
             $message = 'Images created.';
         } else {
-            $message = 'the image size must be 200 Km max anf format accept is gif and jpeg';
+            $message = 'the image size must be 200 Km max and the format accept is gif and jpeg';
         }
         return redirect()->route('adminbrands.adminproducts.adminimages.index', [$brand->slug,$product->slug])->with('message', $message);
         

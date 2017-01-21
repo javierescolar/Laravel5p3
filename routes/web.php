@@ -12,7 +12,7 @@
  */
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-Route::get('/map', 'HomeController@map');
+Route::get('/map', 'MapController@map');
 Route::get('search', 'HomeController@search');
 //Google + Auth
 // Provide controller methods with object instead of ID

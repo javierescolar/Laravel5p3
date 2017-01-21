@@ -24,7 +24,7 @@ $(document).ready(function () {
             searchAdminPanel('tableProducts', 2, txt);
         });
     }
-    var numInputImage = 6;
+    var numInputImage = 1;
     if (document.getElementById('addImageForm')) {
         document.getElementById('addImageForm').addEventListener('click', function () {
             var form = document.getElementById('formImages'),
@@ -52,7 +52,7 @@ $(document).ready(function () {
             inputFile.setAttribute('name', 'image[' + numInputImage + ']');
             inputFile.setAttribute('class', 'form-control');
             inputFile.setAttribute('required', 'true');
-            labelFile.textContent = "Image-" + numInputImage;
+            labelFile.textContent = "Image-" + (numInputImage + 1);
             div_input_file.appendChild(labelFile);
             div_input_file.appendChild(inputFile);
             //input Offer

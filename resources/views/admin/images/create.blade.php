@@ -16,7 +16,7 @@
     <div class="col-md-10 col-md-offset-1">
         <h2 class="text-center headerCreateProduct">Upload Images for {{$product->name}}</h2>
         {{ Form::model(new App\Image, ['route' => ['adminbrands.adminproducts.adminimages.store', $product->brand->slug,$product->slug], 'class'=>'form form-inline','files' => 'true']) }}
-        @include('images/partials/_form', ['submit_text' => 'Create Image'])
+        @include('admin/images/partials/_form', ['submit_text' => 'Create Image'])
         {{ Form::close() }}
     </div>
     </div>

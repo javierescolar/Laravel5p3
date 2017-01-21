@@ -32,27 +32,36 @@ Your brand has no products.
     @foreach( $products as $product )
 
     <div class="col-md-3">
-        
-        <h3>
-            <a href="{{ route('brands.products.show', [$brand->slug, $product->slug]) }}">{{ $product->name }}</a>
-           @if($product->images->where('offer',1)->count())
-           <img class="img img-responsive imgOfferHome" src="{{URL::to('/')}}/img/{{$product->images->where('offer',1)->first()->location}}">
-           @endif
-            
-         
-        </h3>
+        <a class="linkProductsShow" href="{{ route('brands.products.show', [$brand->slug, $product->slug]) }}">
+            <h3 class="text-center">
+                {{ $product->name }}
+                @if($product->images->where('offer',1)->count())
+                <img class="img img-responsive imgOfferHome" src="{{URL::to('/')}}/img/{{$product->images->where('offer',1)->first()->location}}">
+                @endif
+            </h3>
+        </a>
         @if ($product->discount > 0)
-            @if(!Auth::guest() &&  Auth::user()->role == "user")
-            Descuento del {{$product->discount+Auth::user()->discount_user}}%
-            <h4>Price: {{number_format($product->price - ($product->price * (($product->discount + Auth::user()->discount_user)/100)),2)}}</h4>
-            @else
-            Descuento del {{$product->discount}}%
-            <h4>Price: {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}</h4>
-            @endif
+        @if(!Auth::guest() &&  Auth::user()->role == "user")
+        <h4 class="text-center">Price: 
+            <small><strike>{{$product->price}}</strike></small>
+            {{number_format($product->price - ($product->price * (($product->discount + Auth::user()->discount_user)/100)),2)}}
+            €
+        </h4>
+        <p class="text-center">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
         @else
-        <h4>Price: {{$product->price}}</h4>
+       
+        <h4 class="text-center">
+            Price:
+            <small><strike>{{$product->price}}</strike></small>
+             {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}
+             €
+        </h4>
+         <p class="text-center">Descuento del {{$product->discount}}%</p>
         @endif
-        <form class="form-inline">
+        @else
+        <h4 class="text-center">Price: {{$product->price}} €</h4>
+        @endif
+        <form class="form-inline text-center">
             <div class="form-group">
                 <select class="form-control" name="quantity">
                     <option value="0">0</option>
@@ -65,6 +74,7 @@ Your brand has no products.
                 <input type="submit" value="Add to Cart" class="btn buttons">
             </div>
         </form>
+
     </div>
     @endforeach
 </div>

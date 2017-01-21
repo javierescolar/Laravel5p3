@@ -345,3 +345,11 @@ Image credits: unsplash.com
 #footer ul li a, #footer ul li{
     color: #999;
 }
+
+.linkProductsShow:hover{
+    text-decoration:none;
+
+}
+.linkProductsShow h3{
+    color:black;
+}

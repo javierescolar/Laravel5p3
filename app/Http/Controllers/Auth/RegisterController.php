@@ -7,6 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -46,6 +49,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -87,7 +101,7 @@ class RegisterController extends Controller
             $user->where('email','=',$email)->update(['active' => 1, 'confirm_token' => str_random(10)]);
             return redirect('login')->with('message','now you can enter');
         } else {
-            return redirect('');
+            return redirect('home');
         }
     }
     
