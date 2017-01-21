@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
 
     /**
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','username', 'email', 'password','phone1','phone2','profession','birthdate','gener','aboutme','confirm_token',
+        'name', 'username', 'email', 'password', 'phone1', 'phone2', 'profession', 'birthdate', 'gener', 'aboutme', 'confirm_token',
     ];
 
     /**
@@ -26,9 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
-    public function access(){
+
+    public function access() {
         $this->hasMany('App\AdminAccess');
     }
-    
+
 }

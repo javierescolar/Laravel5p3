@@ -9,7 +9,7 @@
         <li data-target="#myCarousel" data-slide-to="{{$key}}"></li>
         @endif
         @endforeach
-       
+
     </ol>
 
     <!-- Wrapper for slides -->
@@ -28,5 +28,5 @@
 
     </div>
 
-    
+
 </div>

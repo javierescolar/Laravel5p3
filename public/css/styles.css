@@ -358,3 +358,7 @@ Image credits: unsplash.com
     color:#ff9b00;
     font-weight:bold;
 }
+
+.productBody{
+    min-height:60em;
+}

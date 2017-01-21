@@ -15,7 +15,7 @@
         @include('partials.nav')
         @endif
 
-        <div class="fluit-container wrapper">
+        <div class="fluit-container">
             <div class="row">
                 @if (Session::has('message'))
                 <div class="flash alert-info col-md-6 col-md-offset-3">
@@ -32,10 +32,10 @@
             </div>
 
             @yield('content')
-            <div class="push"></div>
+             @include('partials.footer')
         </div>
         
-        @include('partials.footer')
+      
         <script type="text/javascript" src="{{ URL::to('/') }}/js/jquery-1.12.1.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/main.js"></script>
