@@ -1,14 +1,5 @@
 <?php
-/*
-  |--------------------------------------------------------------------------
-  | Web Routes
-  |--------------------------------------------------------------------------
-  |
-  | This file is where you may define all of the routes that are handled
-  | by your application. Just tell Laravel the URIs it should respond
-  | to using a Closure or controller method. Build something great!
-  |
- */
+
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/map', 'MapController@map');
@@ -69,7 +60,6 @@ Route::group(['middleware' => ['admin']], function () {
         'as' => 'amdinUploadXML'
     ]);
 });
-
 
 //Agrego una ruta necesaria para seguir con el patron de rutas
 Route::get('adminproducts', [

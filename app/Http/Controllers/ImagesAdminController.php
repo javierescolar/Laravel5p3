@@ -27,7 +27,7 @@ class ImagesAdminController extends Controller
 
     public function index(Brand $brand, Product $product) {
         $images = $product->images()->get();
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.images.index', compact('product', 'images','access'));
     }
 
@@ -37,7 +37,7 @@ class ImagesAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Brand $brand, Product $product) {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.images.create', compact('product','access'));
     }
 
@@ -115,7 +115,7 @@ class ImagesAdminController extends Controller
      */
     public function destroy(Brand $brand, Product $product, Image $image) {
         $image->delete();
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         $images = $product->images()->get();
         return redirect()->route('adminbrands.adminproducts.adminimages.index', [$brand->slug,$product->slug])->with('message', 'Image deleted.');
     }

@@ -39,9 +39,7 @@ use AuthenticatesUsers;
     }
 
     protected function authenticated(Request $request, $user) {
-        
-        
-        
+ 
         if ($user->role == "admin") {
             //updateo una posible sesion sin cerrar
             AdminAccess::where('user_id', Auth::id())

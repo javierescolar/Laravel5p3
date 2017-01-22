@@ -362,3 +362,8 @@ Image credits: unsplash.com
 .productBody{
     min-height:60em;
 }
+
+.bigTittles{
+    margin-top:1em;
+    font-size:6em !important;
+}

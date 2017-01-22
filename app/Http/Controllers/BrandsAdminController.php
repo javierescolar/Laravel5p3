@@ -19,12 +19,12 @@ class BrandsAdminController extends Controller {
 
     public function index() {
         $brands = Brand::all();
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.brands.index', compact('brands', 'access'));
     }
 
     public function create() {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.brands.create', compact('access'));
     }
 
@@ -54,12 +54,12 @@ class BrandsAdminController extends Controller {
 
     public function show(Brand $brand) {
         $products = $brand->products()->get();
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.brands.show', compact('brand', 'products', 'access'));
     }
 
     public function edit(Brand $brand) {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.brands.edit', compact('brand', 'access'));
     }
 

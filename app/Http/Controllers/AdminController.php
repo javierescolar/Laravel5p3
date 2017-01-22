@@ -21,7 +21,7 @@ class AdminController extends Controller {
         $products = Product::all();
         $users = User::all();
         if (Auth::user()->role == "admin") {
-            $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+            $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
             return view('homeAdmin', compact('brands', 'products', 'users', 'access'));
         }
         return redirect()->action('HomeController@index');
@@ -29,7 +29,7 @@ class AdminController extends Controller {
 
     public function getUsers() {
         $users = User::all();
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.users.index', compact('users', 'access'));
     }
 
@@ -45,7 +45,7 @@ class AdminController extends Controller {
     }
 
     public function getFormUploadXML() {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.partials.formUploadXML', compact('access'));
     }
 

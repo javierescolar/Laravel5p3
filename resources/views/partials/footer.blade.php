@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" class="col-md-12">
     <ul class="col-md-offset-1 col-md-3">
         <li>Política de Coockies</li> 
     </ul>

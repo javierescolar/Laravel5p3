@@ -30,7 +30,7 @@ class ProductsAdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         $products = Product::all();
         return view('admin.products.index', compact('products', 'access'));
     }
@@ -41,7 +41,7 @@ class ProductsAdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(Brand $brand) {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.products.create', compact('brand', 'access'));
     }
 
@@ -77,7 +77,7 @@ class ProductsAdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Brand $brand, Product $product) {
-        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(10)->get();
+        $access = \App\AdminAccess::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->take(5)->get();
         return view('admin.products.edit', compact('brand', 'product', 'access'));
     }
 
