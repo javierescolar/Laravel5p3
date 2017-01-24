@@ -12,7 +12,7 @@
 </div>
 <div class="productBody">
     <div class="col-md-10 col-md-offset-1">
-        <h1 class="text-center">{{$product->slogan}}</h1>
+        <h1 class="text-center">{{ mb_strtoupper($product->slogan,'utf-8')}}</h1>
         <p class="text-center textDescription">
             {{ $product->description }}
         </p>
