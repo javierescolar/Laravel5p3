@@ -1,4 +1,4 @@
-<?php $brands = App\Brand::all() ?>
+<?php $brands = App\Brand::all(); ?>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -33,6 +33,7 @@
             <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Resgister</a></li>
             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             @else
+            
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class"img img_responsive" id="imgNav" src="{{URL::to('/')}}/img/{{Auth::user()->image}}"/>{{Auth::user()->name}} 

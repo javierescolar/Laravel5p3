@@ -23,5 +23,6 @@ class User extends Authenticatable {
     public function access() {
         $this->hasMany('App\AdminAccess');
     }
-
+    
+    
 }

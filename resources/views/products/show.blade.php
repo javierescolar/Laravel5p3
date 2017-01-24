@@ -7,7 +7,7 @@
         {{ $product->name }}
         <small class="col-md-offset-5">Technical specifications</small>
         <small class="col-md-offset-1"><a href="{{ route('brands.products.images.index', [$brand->slug, $product->slug]) }}">Gallery</a></small>
-        <small class="col-md-offset-1"><a class="btn btn-info btn-xs">Buy</button></a>
+        <small class="col-md-offset-1"><a href="{{ URL::to('/')}}/addProduct/{{$product->id}}" class="btn btn-info btn-xs">Buy</button></a>
     </h3>
 </div>
 <div class="productBody">

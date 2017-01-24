@@ -8,13 +8,14 @@ use App\Image;
 use App\Http\Requests;
 use Auth;
 use Redirect;
-
+use App\Cart;
 
 class HomeController extends Controller {
 
     public function index() {
         $carruselProducts = Image::where('carrusel', 1)->orderByRaw('RAND()')->take(3)->get();;
         $offerProducts = Image::where('offer', 1)->get();
+        
         if (!Auth::guest()) {
             if (Auth::user()->role == "admin") {
                 return redirect()->action('AdminController@index');
