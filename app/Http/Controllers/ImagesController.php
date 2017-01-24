@@ -15,7 +15,7 @@ class ImagesController extends Controller {
     
 
     public function index(Brand $brand, Product $product) {
-        $images = $product->images()->where('offer',0)->get();
+        $images = $product->images()->get();
         return view('images.index', compact('product', 'images'));
     }
 }

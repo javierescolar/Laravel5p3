@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{route('profile')}}" enctype="multipart/form-data">
                         <div class="form-group">
-                            <img src="{{URL::to('/')}}/img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
+                            <img src="img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

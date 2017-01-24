@@ -25,12 +25,8 @@ class SocialController extends Controller
           if($userGoogle = Socialite::driver($provider)->user()){
             // return redirect()->route("profile")->with('userGoogle',$userGoogle); 
               $user = Auth::user();
-              
-              $user->name = (isset($userGoogle->name))?$userGoogle->name:$user->name;
-              $user->email = (isset($userGoogle->email))?$userGoogle->email:$user->email;
-              $user->gener = (isset($userGoogle->user['gender']))?$userGoogle->user['gender']:$user->gener;
-              $user->birthdate = (isset($userGoogle->user['birthday']))?$userGoogle->user['birthday']:$user->birthdate;
-              $user->profession = (isset($userGoogle->user['occupation']))?$userGoogle->user['occupation']:$user->profession;
+              $user->name = $userGoogle->name;
+              $user->email = $userGoogle->email;
               return view('auth.profile',  compact('user'));
           }else{
              return '¡¡¡Algo fue mal!!!';
