@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             @foreach($brands as $brand)
-            
+
             @if( $brand->calculateDaysCreated() <= 1)
             <li><a href="{{ URL::to('/') }}/brands/{{$brand->slug}}">{{$brand->name}} <span class="newBrand">new</span></a></li>
             @else
@@ -33,7 +33,9 @@
             <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Resgister</a></li>
             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             @else
-            
+            <li class="dropdown">
+                <a href="{{ URL::to('/')}}/cart"><span id="iconCart" class="glyphicon glyphicon-shopping-cart"></span><span class="newBrand">{{Cart::content()->count()}}</span></a>
+            </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class"img img_responsive" id="imgNav" src="{{URL::to('/')}}/img/{{Auth::user()->image}}"/>{{Auth::user()->name}} 

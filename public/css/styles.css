@@ -380,3 +380,15 @@ Image credits: unsplash.com
 #iconCart{
     font-size: 1.4em;
 }
+
+.subtotal{
+    background-color: #c9c9c9;
+}
+.btnRemoveCart{
+    color: red;
+}
+
+.btnRemoveCart:hover{
+    color: #e90000;
+    cursor: pointer;
+}

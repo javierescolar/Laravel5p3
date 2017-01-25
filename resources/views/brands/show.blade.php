@@ -49,18 +49,20 @@ Your brand has no products.
         </h4>
         <p class="text-center discount">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
         @else
-       
+
         <h4 class="text-center">
             Price:
             <small><strike>{{$product->price}}</strike></small>
-             {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}
-             €
+            {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}
+            €
         </h4>
-         <p class="text-center discount">Descuento del {{$product->discount}}%</p>
+        <p class="text-center discount">Descuento del {{$product->discount}}%</p>
         @endif
         @else
         <h4 class="text-center">Price: {{$product->price}} €</h4>
         @endif
+        
+        <!--
         <form class="form-inline text-center">
             <div class="form-group">
                 <select class="form-control" name="quantity">
@@ -74,7 +76,7 @@ Your brand has no products.
                 <input type="submit" value="Add to Cart" class="btn buttons">
             </div>
         </form>
-
+        -->
     </div>
     @endforeach
 </div>

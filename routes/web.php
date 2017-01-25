@@ -1,5 +1,6 @@
 <?php
 
+//Route::post('removeproductcart', 'CartsController@removeProductCart');
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
@@ -106,6 +107,9 @@ Route::get('confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\Register
 
 //Edicion de perfil de usuario
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('emptyCart', 'CartsController@emptyCart');
+    Route::get('/addproductcart/{id}', 'CartsController@addProductCart');
+    Route::get('cart', 'CartsController@show');
     Route::get('profile', [
         'uses' => 'UserController@getProfile',
         'as' => 'profile'

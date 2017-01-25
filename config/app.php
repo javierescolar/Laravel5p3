@@ -181,6 +181,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Artisaninweb\SoapWrapper\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        //Shopping cart
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ],
 
     /*
@@ -236,6 +238,8 @@ return [
         'SoapWrapper' => Artisaninweb\SoapWrapper\Facades\SoapWrapper::class,
         //Google
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        //Shopping cart
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
 
 ];

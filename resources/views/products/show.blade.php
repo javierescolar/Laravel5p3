@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="cold-md-12 productHead">
+<div class="col-md-12 productHead">
     <h3 class="col-md-offset-1">
         {{ $product->name }}
         <small class="col-md-offset-5">Technical specifications</small>
         <small class="col-md-offset-1"><a href="{{ route('brands.products.images.index', [$brand->slug, $product->slug]) }}">Gallery</a></small>
-        <small class="col-md-offset-1"><a href="{{ URL::to('/')}}/addProduct/{{$product->id}}" class="btn btn-info btn-xs">Buy</button></a>
+        <small class="col-md-offset-1"><a href="{{ URL::to('/')}}/addproductcart/{{$product->id}}" class="btn btn-info btn-xs">Add to cart</button></a>
     </h3>
 </div>
 <div class="productBody">

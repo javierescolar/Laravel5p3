@@ -4,9 +4,9 @@
 
 <div class="cold-md-12 productHead">
     <h3 class="col-md-offset-1">{{ $product->name }}
-        <small class="col-md-offset-6"><a href="{{ route('brands.products.show', [$product->brand->slug, $product->slug]) }}">Technical specifications</a></small>
+        <small class="col-md-offset-5"><a href="{{ route('brands.products.show', [$product->brand->slug, $product->slug]) }}">Technical specifications</a></small>
         <small class="col-md-offset-1">Gallery</small>
-        <small class="col-md-offset-1"><button class="btn btn-info btn-xs">Buy</button></small>
+        <small class="col-md-offset-1"><a href="{{ URL::to('/')}}/addproductcart/{{$product->id}}" class="btn btn-info btn-xs">Add to cart</a></small>
     </h3>
 </div>
 <div class="productBody">

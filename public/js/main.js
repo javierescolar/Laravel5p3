@@ -88,6 +88,9 @@ $(document).ready(function () {
         });
     }
 
+    if ($('.flash')) {
+        $('.flash').delay(2000).fadeOut();
+    }
     $('#search').keyup(function () {
         var txt = $(this).val();
         $('#resultSearch').html("");
