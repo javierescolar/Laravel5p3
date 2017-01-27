@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{route('profile')}}" enctype="multipart/form-data">
                         <div class="form-group">
-                            <img src="img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
+                            <img src="{{URL::to('/')}}/img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Birthdate</label>
                             <div class="col-md-3">
-                                <input type="date" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
+                                <input title="format date (yyyy-mm-dd)" type="date" pattern="\d{4}-\d{1,2}-\d{1,2}" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
                             </div>
 
 
