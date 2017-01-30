@@ -13,9 +13,10 @@ use App\Cart;
 class HomeController extends Controller {
 
     public function index() {
-        $carruselProducts = Image::where('carrusel', 1)->orderByRaw('RAND()')->take(3)->get();;
+        $carruselProducts = Image::where('carrusel', 1)->orderByRaw('RAND()')->take(3)->get();
+        ;
         $offerProducts = Image::where('offer', 1)->get();
-        
+
         if (!Auth::guest()) {
             if (Auth::user()->role == "admin") {
                 return redirect()->action('AdminController@index');
@@ -28,11 +29,14 @@ class HomeController extends Controller {
 
     public function search(Request $request) {
         $search = $request->keyword;
-        $results = Product::where('name', 'like', "%$search%")
+        $products = Product::where('name', 'like', "%$search%")
                         ->orWhere('description', 'like', "%$search%")->get();
+        foreach ($products as $key => $product) {
+            $results[$key]['brand'] = $product->brand;
+            $results[$key]['product'] = $product;
+            $results[$key]['images'] = $product->images;
+        }
         return $results;
     }
-    
-    
 
 }

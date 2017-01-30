@@ -2,10 +2,10 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Mobile Shopping</a>
+            <a class="navbar-brand" href="{{ URL::to('/') }}">Mobile Shopping</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            <li><a href="{{ URL::to('/') }}">Home</a></li>
             @foreach($brands as $brand)
 
             @if( $brand->calculateDaysCreated() <= 1)

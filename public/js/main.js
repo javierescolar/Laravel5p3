@@ -126,16 +126,18 @@ function seachAJAX(search) {
     $.ajax({
         dataType: "json",
         method: 'GET',
-        url: '/search',
+        url: 'http://localhost/laravel5p3/public/search',
         data: {keyword: search},
         success: function (result) {
             // update your page with the result json
             console.log(result);
             result.forEach(function (e) {
+                var urlProduct = 'http://localhost/laravel5p3/public/brands/'+e.product.brand.slug+'/products/'+e.product.slug;
                 var div = document.createElement('div'),
-                        p = document.createElement('p');
-                p.textContent = e.name;
-                div.appendChild(p);
+                    a = document.createElement('a');
+                a.setAttribute('href',urlProduct);
+                a.textContent = e.product.name;
+                div.appendChild(a);
                 $('#resultSearch').append(div);
             });
 

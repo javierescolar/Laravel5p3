@@ -33,6 +33,33 @@
             <h3 class="text-center">{{$product->characteristic_3}}</h3>
         </div>
     </div>
+    
+    
+    @if ($product->discount > 0)
+    <div class="col-md-12">
+        @if(!Auth::guest() &&  Auth::user()->role == "user")
+        <h1 class="text-center"> 
+            <small><strike>{{$product->price}}</strike></small>
+            {{number_format($product->price - ($product->price * (($product->discount + Auth::user()->discount_user)/100)),2)}}
+            €
+            <p class="text-center discount">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
+        </h1>
+        
+        @else
+
+        <h1 class="text-center">
+            <small><strike>{{$product->price}}</strike></small>
+            {{number_format($product->price - ($product->price * (($product->discount)/100)),2)}}
+            €
+            <p class="text-center discount">Descuento del {{$product->discount}}%</p>
+        </h1>
+        
+        @endif
+        @else
+        <h1 class="text-center">{{$product->price}} €</h1>
+        </div>
+        @endif
+    
 </div>
 
 @endsection
