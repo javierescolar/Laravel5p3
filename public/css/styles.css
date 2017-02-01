@@ -167,6 +167,13 @@ Image credits: unsplash.com
     height: 2.5em;
     width: 20em;
 }
+#resultSearch div a{
+    color:#555;
+}
+
+#resultSearch div a:hover{
+    text-decoration:none;
+}
 
 #resultSearch div:hover {
     background-color: #1abc9c; 
@@ -201,7 +208,7 @@ Image credits: unsplash.com
     background-color: #46B09B;
     color:white;
 }
-/*Pie de la pÃ¡gina*/
+/*Pie de la pÃƒÂ¡gina*/
 #footer {
     margin-top: 2em;
     background-color: #eee;
