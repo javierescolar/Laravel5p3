@@ -195,6 +195,40 @@ Image credits: unsplash.com
     border-color:rgba(0, 0, 0, 0);
 }
 
+#advSearch{
+    display: none;
+    padding: 0.25em;
+    color:#ccc;
+    background-color:rgba(0, 0, 0, 0.01);
+    border-color:rgba(0, 0, 0, 0);
+    font-size:1.5em;
+    top:0.35em;
+}
+.font{
+    color:#ccc;
+    margin-top:0.2em;
+}
+.inputAdvaOptionLong{
+    margin-left:0.5em;
+    width:20em !important;
+}
+
+
+#advOption{
+    display:none;
+    background-color:#464646;
+    width:20em;
+    position:absolute;
+    z-index:99;
+    height:12.5em;
+}
+.inputAdvaOption{
+    height:1.8em;
+    margin-left:0.5em;;
+    width:8em !important;
+    margin-bottom:1em;
+}
+
 .zoneOffers{
     margin-top: 4em;
 }
@@ -208,7 +242,7 @@ Image credits: unsplash.com
     background-color: #46B09B;
     color:white;
 }
-/*Pie de la pÃƒÆ’Ã‚Â¡gina*/
+/*Pie de la pÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡gina*/
 #footer {
     margin-top: 2em;
     background-color: #eee;

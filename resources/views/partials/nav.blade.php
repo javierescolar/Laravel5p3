@@ -20,6 +20,30 @@
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" id="search" name="search">
+                    <span id="advSearch" class="glyphicon glyphicon-cog"></span>
+                    <div id="advOption">
+                        <div class="col-md-12">
+                            <p class="font">Brand</p>
+                            <select class="form-control input-sm inputAdvaOptionLong" id="brandSelected" name="brandSelected">
+                                <option value="0">All</option>
+                                @foreach($brandsnav as $brandnav)
+                                <option value="{{$brandnav->id}}">{{$brandnav->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <p class="font">Price between</p>
+                            <input type="text" class="form-control inputAdvaOption" name="priceMin" id="priceMin">
+                            <input type="text" class="form-control inputAdvaOption" name="priceMax" id="priceMax">
+                        </div>
+
+                        <div class="col-md-12">
+                            <p class="font col-md-9">With Discount <input type="checkbox" class="form-control" id="checkDiscount" name="checkDiscount"></p>
+                            <button id="searchButton" class="btn btn-default btn-sm col-md-3"><span class="glyphicon glyphicon-check"></span>Apply</button>
+                        </div>
+
+                    </div>
                 </div>
                 <div id="resultSearch"></div>
 

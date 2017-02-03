@@ -98,9 +98,29 @@ $(document).ready(function () {
             seachAJAX(txt);
         }
     });
+    
+    $('#searchButton').click(function () {
+        var txt = $('#search').val(),
+            brandSelected = $('#brandSelected').val(),
+            priceMin = $('#priceMin').val(),
+            priceMax = $('#priceMax').val(),
+            discount = $('#discount').val();
+        
+        $('#resultSearch').html("");
+        if (txt.length > 0) {
+            seachAdvanceAJAX(txt,brandSelected,priceMin,priceMax,discount);
+        }
+    });
+    
     //Ocultar mostrar barra buscador
     $("#buttonSearch").click(function () {
         $("#search").fadeToggle();
+        $('#resultSearch').fadeToggle();
+        $('#advSearch').fadeToggle();
+        $('#advOption').hide();
+    });
+    $("#advSearch").click(function () {
+        $('#advOption').fadeToggle();
         $('#resultSearch').fadeToggle();
     });
 
@@ -128,6 +148,30 @@ function seachAJAX(search) {
         method: 'GET',
         url: 'http://localhost/laravel5p3/public/search',
         data: {keyword: search},
+        success: function (result) {
+            // update your page with the result json
+            console.log(result);
+            result.forEach(function (e) {
+                var urlProduct = 'http://localhost/laravel5p3/public/brands/'+e.product.brand.slug+'/products/'+e.product.slug;
+                var div = document.createElement('div'),
+                    a = document.createElement('a');
+                a.setAttribute('href',urlProduct);
+                a.textContent = e.product.name;
+                div.appendChild(a);
+                $('#resultSearch').append(div);
+            });
+
+        },
+    });
+}
+
+function seachAdvanceAJAX(search,brandSelected,priceMin,priceMax,discount) {
+    var urlProject = window.location.host;
+    $.ajax({
+        dataType: "json",
+        method: 'GET',
+        url: 'http://localhost/laravel5p3/public/searchAdvance',
+        data: {keyword: search,brandSelected:brandSelected,priceMin:priceMin,priceMax:priceMax,discount:discount},
         success: function (result) {
             // update your page with the result json
             console.log(result);
