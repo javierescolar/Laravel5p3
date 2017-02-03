@@ -21,9 +21,13 @@
 
 
 <div class="form-group">
-    <div class="col-md-10">
+    <div class="col-md-8">
         {{ Form::label('slogan', 'Slogan:') }}
         {{ Form::text('slogan',null,['class'=>'form-control']) }}
+    </div>
+    <div class="col-md-2">
+        {{ Form::label('discount', 'Discount:') }}
+        {{ Form::number('discount',null,['class'=>'form-control']) }}
     </div>
     <div class="col-md-2">
         {{ Form::label('appears_on_offer', 'Appears on offer:') }}

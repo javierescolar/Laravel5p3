@@ -1,4 +1,4 @@
-<?php $brands = App\Brand::all(); ?>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -6,12 +6,12 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{{ URL::to('/') }}">Home</a></li>
-            @foreach($brands as $brand)
+            @foreach($brandsnav as $brandnav)
 
-            @if( $brand->calculateDaysCreated() <= 1)
-            <li><a href="{{ URL::to('/') }}/brands/{{$brand->slug}}">{{$brand->name}} <span class="newBrand">new</span></a></li>
+            @if( $brandnav->calculateDaysCreated() <= 1)
+            <li><a href="{{ URL::to('/') }}/brands/{{$brandnav->slug}}">{{$brandnav->name}} <span class="newBrand">new</span></a></li>
             @else
-            <li><a href="{{ URL::to('/') }}/brands/{{$brand->slug}}">{{$brand->name}}</a></li>
+            <li><a href="{{ URL::to('/') }}/brands/{{$brandnav->slug}}">{{$brandnav->name}}</a></li>
             @endif
             @endforeach
         </ul>

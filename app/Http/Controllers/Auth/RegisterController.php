@@ -57,8 +57,9 @@ class RegisterController extends Controller
 
         //$this->guard()->login($user);
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        //return ($this->registered($request, $user))?redirect('register')->with("message",'le hemos enviado un correo') : redirect($this->redirectPath());
+    
+        return redirect('register')->with("message",'We have sent you a registration email');
     }
     protected function validator(array $data)
     {

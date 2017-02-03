@@ -208,7 +208,7 @@ Image credits: unsplash.com
     background-color: #46B09B;
     color:white;
 }
-/*Pie de la pÃƒÂ¡gina*/
+/*Pie de la pÃƒÆ’Ã‚Â¡gina*/
 #footer {
     margin-top: 2em;
     background-color: #eee;
@@ -246,6 +246,7 @@ Image credits: unsplash.com
 .textDescription{
     font-size:1.5em;
     margin:2em;
+    margin-bottom:0em;
 }
 .boxCharacteristic{
     height: 8em;
