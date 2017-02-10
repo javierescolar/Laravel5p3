@@ -123,8 +123,11 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'UserController@deleteProfile',
         'as' => 'delete'
     ]);
+    /*
     Route::get('profile/google/{provider?}', 'SocialController@getSocialAuth');
     Route::get('profile/callback/{provider?}', 'SocialController@getSocialAuthCallback');
+    */
+    Route::get('profile/googlesingin', 'SocialController@getSocialAuthCallback');
 });
 
 

@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -34,38 +35,38 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">E-Mail Address*</label>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Phone 1</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="phone1" value="{{ $user->phone1 }}">
+                                <input id="phone1" type="text" class="form-control" name="phone1" value="{{ $user->phone1 }}">
                             </div>
                             <label class="col-md-2 control-label">Phone 2</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="phone2" value="{{ $user->phone2 }}">
+                                <input id="phone2" type="text" class="form-control" name="phone2" value="{{ $user->phone2 }}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Profession</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="profession" value="{{ $user->profession }}">
+                                <input id="profession" type="text" class="form-control" name="profession" value="{{ $user->profession }}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Birthdate</label>
                             <div class="col-md-3">
-                                <input title="format date (yyyy-mm-dd)" type="date" pattern="\d{4}-\d{1,2}-\d{1,2}" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
+                                <input id="birthdate" title="format date (yyyy-mm-dd)" type="date" pattern="\d{4}-\d{1,2}-\d{1,2}" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
                             </div>
 
 
                             <label class="col-md-1 control-label">Gener</label>
                             <div class="col-md-2">
-                                <select name="gener" class="form-control">
+                                <select name="gener" class="form-control" id="gener">
                                     @if( $user->gener == "male")
                                     <option value="male" selected>Male</option>
                                     <option value="female">Female</option>
@@ -87,15 +88,19 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">About me</label>
                             <div class="col-md-6">
-                                <textarea name="about" rows="5" class="form-control">{{$user->aboutme}}</textarea>
+                                <textarea id="about" name="about" rows="5" class="form-control">{{$user->aboutme}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 @if(Auth::user()->role != "admin")
+                                <!--
                                 <a href="{{url('profile/google/google')}}" id="authorize-button" class="btn btn-danger col-md-offset-6">
                                     Google +
                                 </a>
+                                -->
+                                
+                                <div class="btn g-signin2 col-md-offset-4" data-onsuccess="onSignIn"></div>
                                 @endif
                                 <button type="submit" class="btn btn-primary">
                                     Save Profile
