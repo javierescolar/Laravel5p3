@@ -6,6 +6,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/map', 'MapController@map');
 Route::get('search', 'HomeController@search');
+Route::get('searchAdvance', 'HomeController@searchAdvance');
 //Google + Auth
 // Provide controller methods with object instead of ID
 Route::model('images', 'Image');

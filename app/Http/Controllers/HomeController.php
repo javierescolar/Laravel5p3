@@ -29,8 +29,32 @@ class HomeController extends Controller {
 
     public function search(Request $request) {
         $search = $request->keyword;
-        $products = Product::where('name', 'like', "%$search%")
-                        ->orWhere('description', 'like', "%$search%")->get();
+        $products = Product::where('name', 'like', "%$search%")->get();
+        foreach ($products as $key => $product) {
+            $results[$key]['brand'] = $product->brand;
+            $results[$key]['product'] = $product;
+            $results[$key]['images'] = $product->images;
+        }
+        return $results;
+    }
+    
+    public function searchAdvance(Request $request) {
+        $brandSelected = $request->brandSelected;
+        $priceMin = $request->priceMin;
+        $priceMax = $request->priceMax;
+        $discount = $request->discount;
+        if($discount){
+            $products = Product::where('brand_id', '=', $brandSelected)
+                        ->where('discount', '>',0)
+                        ->whereBetween('price',[$priceMin,$priceMax])
+                        ->get();
+        } else {
+            $products = Product::where('brand_id', '=', $brandSelected)
+                        ->where('discount', '=',0)
+                        ->whereBetween('price',[$priceMin,$priceMax])
+                        ->get();
+        }
+            
         foreach ($products as $key => $product) {
             $results[$key]['brand'] = $product->brand;
             $results[$key]['product'] = $product;

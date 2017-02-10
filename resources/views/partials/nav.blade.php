@@ -25,7 +25,6 @@
                         <div class="col-md-12">
                             <p class="font">Brand</p>
                             <select class="form-control input-sm inputAdvaOptionLong" id="brandSelected" name="brandSelected">
-                                <option value="0">All</option>
                                 @foreach($brandsnav as $brandnav)
                                 <option value="{{$brandnav->id}}">{{$brandnav->name}}</option>
                                 @endforeach
@@ -54,7 +53,7 @@
                 </button>
             </li>
             @if(Auth::guest())
-            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Resgister</a></li>
+            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             @else
             <li class="dropdown">

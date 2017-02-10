@@ -100,24 +100,31 @@ $(document).ready(function () {
     });
     
     $('#searchButton').click(function () {
-        var txt = $('#search').val(),
-            brandSelected = $('#brandSelected').val(),
-            priceMin = $('#priceMin').val(),
-            priceMax = $('#priceMax').val(),
-            discount = $('#discount').val();
+        var brandSelected = $('#brandSelected').val(),
+        priceMin = ($('#priceMin').val() == "")?"0":$('#priceMin').val(),
+        priceMax = ($('#priceMax').val() == "")?"9999":$('#priceMax').val(),
+        discount = $('#checkDiscount').is(':checked');
         
         $('#resultSearch').html("");
-        if (txt.length > 0) {
-            seachAdvanceAJAX(txt,brandSelected,priceMin,priceMax,discount);
-        }
+        
+        seachAdvanceAJAX(brandSelected,priceMin,priceMax,discount);  
+         
+        $('#advOption').hide();
+        $('#resultSearch').show();
     });
     
     //Ocultar mostrar barra buscador
     $("#buttonSearch").click(function () {
         $("#search").fadeToggle();
-        $('#resultSearch').fadeToggle();
+        if($('#search').css('display') == 'none'){
+            $('#resultSearch').show();
+        } else {
+            $('#resultSearch').hide();
+        }
+        //$('#resultSearch').fadeToggle();
         $('#advSearch').fadeToggle();
         $('#advOption').hide();
+        
     });
     $("#advSearch").click(function () {
         $('#advOption').fadeToggle();
@@ -165,13 +172,13 @@ function seachAJAX(search) {
     });
 }
 
-function seachAdvanceAJAX(search,brandSelected,priceMin,priceMax,discount) {
+function seachAdvanceAJAX(brandSelected,priceMin,priceMax,discount) {
     var urlProject = window.location.host;
     $.ajax({
         dataType: "json",
         method: 'GET',
         url: 'http://localhost/laravel5p3/public/searchAdvance',
-        data: {keyword: search,brandSelected:brandSelected,priceMin:priceMin,priceMax:priceMax,discount:discount},
+        data: {brandSelected:brandSelected,priceMin:priceMin,priceMax:priceMax,discount:discount},
         success: function (result) {
             // update your page with the result json
             console.log(result);

@@ -17,8 +17,9 @@
             {{ $product->description }}
         </p>
     </div>
-    @if ($product->discount > 0)
     <div class="col-md-12">
+    @if ($product->discount > 0)
+    
         @if(!Auth::guest() &&  Auth::user()->role == "user")
         <h1 class="text-center"> 
              <p class="text-center discount">Descuento del {{$product->discount+Auth::user()->discount_user}}%</p>
@@ -41,8 +42,9 @@
         @endif
         @else
         <h1 class="text-center">{{$product->price}} €</h1>
-        </div>
+        
     @endif
+    </div>
     <div class="col-md-12">
         @include('products/partials/carrusel')
     </div>
