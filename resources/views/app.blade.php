@@ -3,7 +3,11 @@
         <title>Mobile Shopping</title>
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/styles.css" type="text/css" />
-        <meta name="google-signin-client_id" content="6077178310-2fsuup66mj74g0kahe19hem5jm7gbr2h.apps.googleusercontent.com">
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+        <script type="text/javascript" src="{{ URL::to('/') }}/js/singInGoogle.js"></script>
     </head>
     <body>
         @if (!Auth::guest())
@@ -40,11 +44,12 @@
             @yield('content')
             @include('partials.footer')
         </div>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="{{ URL::to('/') }}/js/singInGoogle.js" type="text/javascript" async defer></script>
+
 
         <script type="text/javascript" src="{{ URL::to('/') }}/js/jquery-1.12.1.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/main.js"></script>
+        
     </body>
+
 </html>

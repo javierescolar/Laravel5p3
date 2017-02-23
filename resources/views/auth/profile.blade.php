@@ -92,26 +92,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-6">
                                 @if(Auth::user()->role != "admin")
-                                <!--
-                                <a href="{{url('profile/google/google')}}" id="authorize-button" class="btn btn-danger col-md-offset-6">
-                                    Google +
-                                </a>
-                                -->
+                                <a id="signinButton" href="{{URL::to('/')}}/profile/googlesingin">Sign in with Google</a>
                                 
-                                <div class="btn g-signin2 col-md-offset-4" data-onsuccess="onSignIn"></div>
                                 @endif
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="buttonSaveProfile">
                                     Save Profile
                                 </button>
                             </div>
+
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 @endsection

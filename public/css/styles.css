@@ -434,3 +434,8 @@ Image credits: unsplash.com
     color: #e90000;
     cursor: pointer;
 }
+
+#buttonSaveProfile{
+    margin-top:-2.4em;
+    height:2.25em;
+}
