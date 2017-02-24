@@ -61,8 +61,13 @@
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img class"img img_responsive" id="imgNav" src="{{URL::to('/')}}/img/{{Auth::user()->image}}"/>{{Auth::user()->name}} 
+                    @if(Session()->has('imageGoogle'))
+                    <img class="img img_responsive" id="imgNav" src="{{Session()->get('imageGoogle')}}"/>{{Auth::user()->name}} 
                          <span class="caret"></span>
+                    @else
+                    <img class="img img_responsive" id="imgNav" src="{{URL::to('/')}}/img/{{Auth::user()->image}}"/>{{Auth::user()->name}} 
+                         <span class="caret"></span>
+                    @endif
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('profile') }}">Profile</a></li>

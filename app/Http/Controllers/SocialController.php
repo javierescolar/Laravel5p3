@@ -9,6 +9,7 @@ use Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Google_Client;
 use Google_Service_Oauth2;
+use Google_Service_Plus;
 use Redirect;
 
 class SocialController extends Controller {
@@ -18,7 +19,9 @@ class SocialController extends Controller {
     private $redirect_uri = "http://localhost/laravel5p3/public/profile/googlesingin/callback";
     private $scope = ["https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
-        "https://www.googleapis.com/auth/plus.me"
+        "https://www.googleapis.com/auth/plus.me",
+        "https://www.googleapis.com/auth/user.birthday.read",
+        "https://www.googleapis.com/auth/user.phonenumbers.read"
     ];
 
     public function getSocialAuth(Request $request) {
@@ -33,15 +36,17 @@ class SocialController extends Controller {
         if ($request->session()->has('access_token')) {
             $access_token = $request->session()->get('access_token');
             $client->setAccessToken($access_token);
-            $servGoogle = new Google_Service_Oauth2($client);
-            $userGoogle = $servGoogle->userinfo_v2_me->get();
+            $servGoogle = new Google_Service_Plus($client);
+            $userGoogle = $servGoogle->people->get('me');
             $user = Auth::user();
-            $user->name = (isset($userGoogle->name)) ? $userGoogle->name : $user->name;
-            $user->email = (isset($userGoogle->email)) ? $userGoogle->email : $user->email;
+            $user->name = (isset($userGoogle->displayName)) ? $userGoogle->displayName : $user->name;
+            $user->email = (isset($userGoogle['modelData']['emails'][0]['value'])) ? $userGoogle['modelData']['emails'][0]['value'] : $user->email;
             $user->profession = (isset($userGoogle->occupation)) ? $userGoogle->occupation : $user->profession;
             $user->birthdate = (isset($userGoogle->birthday)) ? $userGoogle->birthday : $user->bithdate;
             $user->gener = (isset($userGoogle->gender)) ? $userGoogle->gender : $user->gener;
+            session(['imageGoogle' => $userGoogle->image->url]);
             $return = view('auth.profile', compact('user'));
+            
         } else {
             $return = redirect()->action('SocialController@getSocialAuthCallback');
         }
@@ -49,7 +54,6 @@ class SocialController extends Controller {
     }
 
     public function getSocialAuthCallback(Request $request) {
-
 
         $client = new Google_Client();
         $client->setClientId($this->id_cliente);
@@ -73,6 +77,18 @@ class SocialController extends Controller {
             $return = redirect()->action('SocialController@getSocialAuth');
         }
         return $return;
+    }
+
+    public function revokeSocialAuth(Request $request) {
+        $user = Auth::user();
+        $client = new Google_Client();
+        $client->setClientId($this->id_cliente);
+        $client->setClientSecret($this->id_secret);
+        $client->setScopes($this->scope);
+        $client->revokeToken();
+        $request->session()->forget('access_token');
+        $request->session()->forget('imageGoogle');
+        return view('auth.profile',  compact("user"))->with("message","token revocado");
     }
 
 }

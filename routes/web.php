@@ -128,7 +128,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile/callback/{provider?}', 'SocialController@getSocialAuthCallback');
     */
     Route::get('profile/googlesingin', 'SocialController@getSocialAuth');
-    Route::get('profile/googlesingin/callback/{code?}', 'SocialController@getSocialAuthCallback');
+    Route::get('profile/googlesingin/callback/{code?}', 'SocialController@getSocialAuthCallback');  
+    Route::get('profile/googlesingout', 'SocialController@revokeSocialAuth');
 });
 
 

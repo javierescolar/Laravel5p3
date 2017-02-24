@@ -21,7 +21,11 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{route('profile')}}" enctype="multipart/form-data">
                         <div class="form-group">
+                        @if(Session()->has('imageGoogle'))
+                            <img src="{{Session()->get('imageGoogle')}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
+                        @else
                             <img src="{{URL::to('/')}}/img/{{$user->image}}" class="img img-responsive col-md-offset-5 col-xs-offset-3" id="imgProfile" alt="user_image"/>
+                        @endif
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -92,12 +96,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-6">
+                            <div class="col-md-6 col-md-offset-7">
                                 @if(Auth::user()->role != "admin")
-                                <a id="signinButton" href="{{URL::to('/')}}/profile/googlesingin">Sign in with Google</a>
-                                
+                                    @if(Session()->has('access_token'))
+                                    <a id="signinButton" class="btn btn-danger" href="{{URL::to('/')}}/profile/googlesingout">Google Sing Out</a>
+                                    @else
+                                    <a id="signinButton" class="btn btn-danger" href="{{URL::to('/')}}/profile/googlesingin">Google Sing In </a>
+                                    @endif
                                 @endif
-                                <button type="submit" class="btn btn-primary" id="buttonSaveProfile">
+                                <button type="submit" class="btn btn-primary" >
                                     Save Profile
                                 </button>
                             </div>
